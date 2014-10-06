@@ -1,0 +1,10 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+h2{
+    line-height: 1em;
+    font-size: 3em;
+}
