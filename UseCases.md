@@ -45,6 +45,17 @@
 - Desc: Remove a tag from all ressources
 - Flow:
 	1. The user initiates the removal of a tag
-	2. The system removes the tag and all it's links
+	2. The system removes the tag from all ressources
 - Alternate Flow:
- -
+
+
+## Case 5
+- Name:	Edit a ressource
+- Desc:	add or remove tags from a ressource
+- PreC: A ressource is selected
+- Flow:
+	1. The user selects a tag to remove or writes a tag to add
+	2. The system removes the tag or adds the new one to the ressource
+- Alternate Flow:
+
+
