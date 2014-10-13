@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS utag;
 
 -- Datenbank: `utag`
---
+
 CREATE DATABASE IF NOT EXISTS utag character set utf8 collate utf8_general_ci;
 USE utag;
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `similarity_user` (
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Create relationships section ------------------------------------------------- 
+-- Create relationships section -------------------------------------------------
 
 ALTER TABLE `tag_resource` 	ADD CONSTRAINT `tag_resource-tag` 		FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE `tag_resource` 	ADD CONSTRAINT `tag_resource-resource` 	FOREIGN KEY (`resource_id`) REFERENCES `resource` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
