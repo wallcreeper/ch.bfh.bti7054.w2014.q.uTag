@@ -1,4 +1,4 @@
-DROP DATABASE utag;
+DROP DATABASE IF EXISTS utag;
 
 -- Datenbank: `utag`
 --
