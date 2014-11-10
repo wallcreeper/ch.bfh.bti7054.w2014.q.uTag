@@ -1,2 +1,45 @@
-.idea/
-.idea/*
+# ******************
+# OS generated files
+# ******************
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# *******************
+# NODE, GRUNT & BOWER
+# *******************
+
+# node modules
+node_modules
+
+# server public directory (generated)
+public/*
+!public/index.php
+
+# grunt .tmp directory
+.tmp
+
+# bower components
+bower_components
+
+
+
+# *******
+# LARAVEL
+# *******
+
+# composer installed libraries
+vendor
+app/cache
+app/log
+
+# environment config files
+.env.php
+.env.*.php
+!.env.sample.php
+
