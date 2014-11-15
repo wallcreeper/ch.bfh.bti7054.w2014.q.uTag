@@ -13,11 +13,12 @@ angular.module('utagApp')
 
     $scope.tags = promise.data.tags || [];
 
+    console.log(promise);
+
   	// function activate() {
   	// 	console.log('activate');
   	// }
 
-   //  activate();
+	//  activate();
 
   }]);
-

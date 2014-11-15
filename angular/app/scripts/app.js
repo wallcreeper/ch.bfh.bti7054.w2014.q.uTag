@@ -39,6 +39,26 @@ angular
           }
         }
       })
+      .when('/tags', {
+        templateUrl: 'views/tags.html',
+        controller: 'TagsCtrl',
+        controllerAs: 'ctrl',
+        resolve: {
+          'promise': function (Tag) {
+            return Tag.fetchAll();
+          }
+        }
+      })
+      .when('/resources', {
+        templateUrl: 'views/resources.html',
+        controller: 'ResourcesCtrl',
+        controllerAs: 'ctrl',
+        resolve: {
+          'promise': function (Resource) {
+            return Resource.fetchAll();
+          }
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -31,6 +31,9 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      options: {
+        spawn: false
+      },
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
@@ -45,6 +48,10 @@ module.exports = function (grunt) {
       jsTest: {
         files: ['<%= yeoman.basedir %>/test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
+      },
+      styles: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+        tasks: ['newer:copy:styles', 'autoprefixer']
       },
       sass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -142,6 +149,7 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/{,*/}*',
             '<%= yeoman.app %>/styles/{,*/}*.css',
             '<%= yeoman.phpSrc %>/views/index.html',
+            '!<%= yeoman.app %>/styles/draemmlib/{,**/,*/}*.css',
             '!<%= yeoman.dist %>/.git*',
             '!<%= yeoman.dist %>/*.php',
             '!<%= yeoman.dist %>/.htaccess'
@@ -214,7 +222,8 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          // '<%= yeoman.dist %>/styles/fonts/{,**/,*/}*',
+          '!<%= yeoman.dist %>/styles/draemmlib/{,**/,*/}*.css',
         ]
       }
     },
@@ -358,9 +367,10 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
+            'styles/{,**/,*/}*.css', // 'styles/{,*/}*.css',
+            'styles/fonts/{,*/}*.{css,ttf}',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/**'
           ],
         }, {
           expand: true,

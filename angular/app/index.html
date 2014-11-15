@@ -8,7 +8,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.tmp) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/pure/pure.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -21,21 +20,18 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container pure-g">
-      <div class="header pure-u-1">
-        <div class="pure-menu pure-menu-open pure-menu-horizontal">
-            <ul>
-                <li class="pure-menu-selected"><a data-ng-href="#">Home</a></li>
-                <li><a data-ng-href="#/about">About</a></li>
-                <li><a data-ng-href="#/tag">Tags</a></li>
-            </ul>
-        </div>
-      </div>
-
-      <div class="content pure-u-1" data-ng-view=""></div>
-
-      <div class="footer pure-u-1"></div>
+    <div class="container">
+      <div class="header"></div>
+      <div class="content" data-ng-view=""></div>
+      <div class="footer"></div>
     </div>
+
+    <script type="text/javascript">
+        function demoDragover(event){
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'copy';
+        }
+    </script>
 
     <!-- build:js(.tmp) scripts/oldieshim.js -->
     <!--[if lt IE 9]>
@@ -64,6 +60,9 @@
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/tag.js"></script>
     <script src="scripts/services/tag.js"></script>
+    <script src="scripts/controllers/resources.js"></script>
+    <script src="scripts/controllers/tags.js"></script>
+    <script src="scripts/services/resource.js"></script>
     <!-- endbuild -->
 </body>
 </html>

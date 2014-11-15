@@ -78,6 +78,9 @@ Follow the guide on the [Laravel docs](http://laravel.com/docs/4.2/homestead)
 	vim phpmyadmin.app
 	```
 
+4. Open the `/etc/hosts` file on your host machine and add `127.0.0.1 phpmyadmin.app`
+
+5. Go to [http://phpmyadmin.app:8000](http://phpmyadmin.app:8000)
 
 #### Variant 2
 

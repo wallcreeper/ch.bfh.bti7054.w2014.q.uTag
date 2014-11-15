@@ -1,0 +1,54 @@
+button{
+	border: 1px rgba(0, 0, 0, 0.5) solid;
+	background: linear-gradient(to bottom, rgba(250, 250, 250, 0.8), rgba(200, 200, 200, 0.8));
+	padding: 3px 6px;
+	cursor: pointer;
+	outline: none;
+	height: 25px;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: 1em;
+
+	transition: background;
+	transition-duration: 100ms;
+}
+
+button:hover{
+	border: 1px rgba(0, 0, 0, 0.7) solid;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(200, 200, 200, 1));
+}
+
+button:active{
+	border: 1px rgba(0, 0, 0, 1) solid;
+	background: linear-gradient(to top, #FFFFFF, #EEEEEE);
+}
+
+textarea,
+div [contenteditable="true"]{
+	font-size: inherit;
+	border: 1px #DDDDDD solid;
+	outline: none;
+	background-color: #FFFFFF;
+	white-space: pre;
+	overflow-y: auto;
+	font-family: inherit;
+}
+
+textarea:hover, textarea:active, textarea:focus,
+div [contenteditable="true"]:hover, div [contenteditable="true"]:active, div [contenteditable="true"]:focus{
+	border-color: #AAAAAA;
+}
+
+input[type="text"],
+input[type="number"]{
+	border: 1px #DDDDDD solid;
+	outline: none;
+	height: 25px;
+	padding: 2px;
+	font-family: inherit;
+}
+
+input[type="text"]:hover, input[type="text"]:active, input[type="text"]:focus,
+input[type="number"]:hover, input[type="number"]:active, input[type="number"]:focus{
+	border-color: #AAAAAA;
+}
