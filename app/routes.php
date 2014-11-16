@@ -20,4 +20,5 @@ Route::get('/', function()
 Route::group(array('prefix' => 'api/v1', 'before' => '<span class="skimlinks-unlinked">auth.basic</span>'), function()
 {
     Route::resource('tags', 'TagsController');
+    Route::resource('resources', 'ResourcesController');
 });

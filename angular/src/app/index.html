@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>utag</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/assets/fonts/openSans/OpenSans.css">
+    <!-- inject:vendor:css -->
+    <!-- endinject -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/sass/draemmlib/main.css">
+    <link rel="stylesheet" href="/css/sass/main.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" href="/css/tag/tag.css">
+    <link rel="stylesheet" href="/css/resource/resource.css">
+    <!-- endinject -->
+  </head>
+  <body data-ng-app="utag">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container">
+      <div class="header"></div>
+      <div class="content" data-ng-view=""></div>
+      <div class="footer"></div>
+    </div>
+
+    <script type="text/javascript">
+        function demoDragover(event){
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'copy';
+        }
+    </script>
+    <!-- inject:vendor:js -->
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-route/angular-route.js"></script>
+    <script src="/angular-resource/angular-resource.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="/tag/tag.js"></script>
+    <script src="/tag/tag-service.js"></script>
+    <script src="/tag/tag-controller.js"></script>
+    <script src="/resource/resource.js"></script>
+    <script src="/resource/resource-service.js"></script>
+    <script src="/resource/resource-controller.js"></script>
+    <script src="/main/main.js"></script>
+    <script src="/main/main-controller.js"></script>
+    <script src="/app.js"></script>
+    <script src="/utag-templates.js"></script>
+    <!-- endinject -->
+  </body>
+</html>

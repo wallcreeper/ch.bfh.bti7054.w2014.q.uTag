@@ -11,7 +11,7 @@ ehthumbs.db
 Thumbs.db
 
 # *******************
-# NODE, GRUNT & BOWER
+# NODE, GULP & BOWER
 # *******************
 
 # node modules
@@ -21,7 +21,7 @@ node_modules
 public/*
 !public/index.php
 
-# grunt .tmp directory
+# gulp .tmp directory
 .tmp
 
 # bower components

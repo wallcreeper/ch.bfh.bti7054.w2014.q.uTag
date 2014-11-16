@@ -12,11 +12,12 @@ class TagsController extends \BaseController {
 		$tags = Tag::all();
 
 		// return View::make('tags.index', compact('tags'));
-		return Response::json(array(
-	        'error' => false,
-	        'tags' => $tags->toArray()),
-	        200
-	    );
+		// return Response::json(array(
+		// 	'error' => false,
+		// 	'tags' => $tags->toArray()),
+		// 	200
+		// );
+		return Response::json($tags->toArray(), 200);
 	}
 
 	/**
@@ -58,7 +59,8 @@ class TagsController extends \BaseController {
 	{
 		$tag = Tag::findOrFail($id);
 
-		return View::make('tags.show', compact('tag'));
+		// return View::make('tags.show', compact('tag'));
+		return Response::json($tag, 200);
 	}
 
 	/**

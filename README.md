@@ -11,15 +11,7 @@ a microtagger
 	
 	[Installing node via package manager](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager)
 
-2. Install [Grunt](http://gruntjs.com/)
-
-	Command line tool
-
-	```bash
-	npm install -g grunt-cli
-	```
-
-	Dependencies
+2. Install Dependencies
 
 	```bash
 	cd </path/to/utag-repo/>
