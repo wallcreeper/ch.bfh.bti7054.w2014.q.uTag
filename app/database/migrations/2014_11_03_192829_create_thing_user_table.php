@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateResourceUserTable extends Migration {
+class CreateThingUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateResourceUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('resource_user', function(Blueprint $table)
+		Schema::create('thing_user', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('resource_id')->unsigned()->index();
-			$table->foreign('resource_id')->references('id')->on('resources')->onDelete('cascade');
+			$table->integer('thing_id')->unsigned()->index();
+			$table->foreign('thing_id')->references('id')->on('things')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
@@ -31,7 +31,7 @@ class CreateResourceUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('resource_user');
+		Schema::drop('thing_user');
 	}
 
 }
