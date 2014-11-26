@@ -8,6 +8,6 @@ class Tag extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = ['name',];
+	protected $fillable = ['name','counter'];
 
 }

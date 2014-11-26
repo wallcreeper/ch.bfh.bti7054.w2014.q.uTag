@@ -18,7 +18,7 @@ class TagsTableSeeder extends Seeder {
 		{
 			Tag::create([
 				'name' 		=> $faker->word,
-				'counter' 	=> '0'
+				'counter' 	=> $faker->randomDigit
 			]);
 		}
 	}
