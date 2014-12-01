@@ -3,7 +3,7 @@
 describe('Service: resource', function () {
 
   // load the service's module
-  beforeEach(module('utag.tag'));
+  beforeEach(module('utag.tags'));
 
   // instantiate service
   var resource;

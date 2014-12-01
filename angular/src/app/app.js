@@ -11,8 +11,8 @@ angular
     'ngRoute',
     'ngResource',
     'utag.main',
-    'utag.tag',
-    'utag.resource'
+    'utag.tags',
+    'utag.things'
   ])
   .config(function ($routeProvider) {
     'use strict';
@@ -23,8 +23,8 @@ angular
         controllerAs: 'ctrl'
       })
       .when('/tags', {
-        templateUrl: '/utag/tag/tags.html',
-        controller: 'TagCtrl',
+        templateUrl: '/utag/tags/tags.html',
+        controller: 'TagsCtrl',
         controllerAs: 'ctrl',
         // resolve: {
         //   'promise': function (Tag) {
@@ -33,8 +33,8 @@ angular
         // }
       })
       .when('/tags/:id/view', {
-        templateUrl: '/utag/tag/tag.html',
-        controller: 'TagCtrl',
+        templateUrl: '/utag/tags/tag.html',
+        controller: 'TagsCtrl',
         controllerAs: 'ctrl',
         // resolve: {
         //   'promise': function (Tag) {
@@ -42,23 +42,23 @@ angular
         //   }
         // }
       })
-      .when('/resources', {
-        templateUrl: '/utag/resource/resources.html',
-        controller: 'ResourceCtrl',
+      .when('/things', {
+        templateUrl: '/utag/things/things.html',
+        controller: 'ThingsCtrl',
         controllerAs: 'ctrl',
         // resolve: {
-        //   'promise': function (Resource) {
-        //     return Resource.query();
+        //   'promise': function (Things) {
+        //     return Things.query();
         //   }
         // }
       })
-      .when('/resources/:id/view', {
-        templateUrl: '/utag/resource/resource.html',
-        controller: 'ResourceCtrl',
+      .when('/things/:id/view', {
+        templateUrl: '/utag/things/thing.html',
+        controller: 'ThingsCtrl',
         controllerAs: 'ctrl',
         // resolve: {
-        //   'promise': function (Resource) {
-        //     return Resource.query();
+        //   'promise': function (Things) {
+        //     return Things.query();
         //   }
         // }
       })

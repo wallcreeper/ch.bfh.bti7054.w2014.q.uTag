@@ -1,12 +1,12 @@
-        <div id="resources">
-            <div id="resourcesHeader" class="sectionHeader">
+        <div id="things">
+            <div id="thingsHeader" class="sectionHeader">
                 <h2 class="sectionTitle">
-                    Resources
+                    Things
                 </h2>
                 <div class="inputContainer searchContainer" ondragover="demoDragover(event)">
-                    <input type="text" autofocus id="resourceSearch" placeholder="Search resources..." />
+                    <input type="text" autofocus id="thingSearch" placeholder="Search things..." />
                 </div>
-                <div class="resource" ondragover="demoDragover(event)">
+                <div class="thing" ondragover="demoDragover(event)">
                     <h3>New HTML5 ants discovered</h3>
                     <a href="#" target="_blank">fakenewsdaily.com/2014/10/html5-ants-discovered</a>
                     <hr />
@@ -26,7 +26,7 @@
                         Add tag
                     </div>
                 </div>
-                <div class="resource" ondragover="demoDragover(event)">
+                <div class="thing" ondragover="demoDragover(event)">
                     <h3>MDN: CSS3 Gradients</h3>
                     <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_gradients" target="_blank">developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_gradients</a>
                     <hr />
@@ -40,7 +40,7 @@
                         MDN
                     </div>
                 </div>
-                <div class="resource" ondragover="demoDragover(event)">
+                <div class="thing" ondragover="demoDragover(event)">
                     <h3>Left Handed Words</h3>
                     <a href="https://gist.github.com/RolandR/10019868" target="_blank">gist.github.com/RolandR/10019868</a>
                     <hr />
@@ -48,7 +48,7 @@
                         Science
                     </div>
                 </div>
-                <div class="resource" ondragover="demoDragover(event)">
+                <div class="thing" ondragover="demoDragover(event)">
                     <h3>uTag Repository on Github</h3>
                     <a href="https://github.com/wallcreeper/ch.bfh.bti7054.w2014.q.uTag" target="_blank">github.com/wallcreeper/ch.bfh.bti7054.w2014.q.uTag</a>
                     <hr />
@@ -62,7 +62,7 @@
                         Github Repositories
                     </div>
                 </div>
-                <div class="resource" ondragover="demoDragover(event)">
+                <div class="thing" ondragover="demoDragover(event)">
                     <h3>This title is like waaaay too long Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
                     <a href="https://github.com/wallcreeper/ch.bfh.bti7054.w2014.q.uTag" target="_blank">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</a>
                     <hr />
@@ -73,8 +73,8 @@
 
 
 
-                <div data-ng-repeat="resource in resources | orderBy:'name'" class="resource" ondragover="demoDragover(event)">
-                    <h3>{{resource.name}}</h3>
+                <div data-ng-repeat="thing in things | orderBy:'name'" class="thing" ondragover="demoDragover(event)">
+                    <h3>{{thing.name}}</h3>
                     <a href="https://gist.github.com/RolandR/10019868" target="_blank">gist.github.com/RolandR/10019868</a>
                     <hr />
                     <div class="tag" style="background-color: rgba(128, 255, 0, 0.15);" draggable="true"><div></div>

@@ -1,6 +1,6 @@
 /* jshint strict:false, globalstrict:false */
 /* global describe, it, beforeEach, inject, module */
-describe('ResourceCtrl', function () {
+describe('ThingsCtrl', function () {
   var todoCtrl,
       scope;
 
@@ -10,7 +10,7 @@ describe('ResourceCtrl', function () {
     scope = $injector.get('$rootScope');
 
     todoCtrl = function () {
-      return $injector.get('$controller')('ResourceCtrl', {'$scope': scope});
+      return $injector.get('$controller')('ThingsCtrl', {'$scope': scope});
     };
   }));
 

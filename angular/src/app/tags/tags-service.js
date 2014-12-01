@@ -1,11 +1,11 @@
 /**
  * @ngdoc service
- * @name utag.tag:Tag
+ * @name utag.tag:Tags
  * @description
- * # Tag
+ * # Tags
  * Service in the utag app.
  */
-angular.module('utag.tag').factory('Tag', function($resource) {
+angular.module('utag.tags').factory('Tags', function($resource) {
   'use strict';
   return $resource('/api/v1/tags/:id'); // Note the full endpoint address
 });

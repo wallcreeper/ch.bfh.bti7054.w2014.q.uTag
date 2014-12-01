@@ -235,8 +235,8 @@ function cssFiles (opt) {
     './.tmp/css/sass/main.css',
     './.tmp/css/app.css',
     './.tmp/css/main/main.css',
-    './.tmp/css/tag/tag.css',
-    './.tmp/css/resource/resource.css'
+    './.tmp/css/tags/tags.css',
+    './.tmp/css/things/things.css'
   ], opt);
 }
 

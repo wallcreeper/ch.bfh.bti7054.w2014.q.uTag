@@ -7,8 +7,8 @@
  */
 angular
   .module('utag.main')
-  .controller('MainCtrl', function MainCtrl ($scope, Tag, Resource) {
+  .controller('MainCtrl', function MainCtrl ($scope, Tags, Things) {
     'use strict';
-    $scope.tags = Tag.query();
-    $scope.resources = Resource.query();
+    $scope.tags = Tags.query();
+    $scope.things = Things.query();
   });

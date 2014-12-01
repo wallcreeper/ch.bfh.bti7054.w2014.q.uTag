@@ -1,18 +1,18 @@
 /* jshint strict:false, globalstrict:false */
 /* global describe, it, beforeEach, inject, module */
-describe('Service: resource', function () {
+describe('Service: things', function () {
 
   // load the service's module
-  beforeEach(module('utag.resource'));
+  beforeEach(module('utag.things'));
 
   // instantiate service
-  var resource;
-  beforeEach(inject(function (_resource_) {
-    resource = _resource_;
+  var things;
+  beforeEach(inject(function (_things_) {
+    things = _things_;
   }));
 
   it('should do something', function () {
-    expect(!!resource).toBe(true);
+    expect(!!things).toBe(true);
   });
 
 });
