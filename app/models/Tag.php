@@ -10,4 +10,9 @@ class Tag extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = ['name','counter'];
 
+
+	public function things() {
+		return $this->belongsToMany('thing', 'thing_tag');
+	}
+
 }

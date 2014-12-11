@@ -77,8 +77,8 @@
                     <h3>{{thing.name}}</h3>
                     <a href="https://gist.github.com/RolandR/10019868" target="_blank">gist.github.com/RolandR/10019868</a>
                     <hr />
-                    <div class="tag" style="background-color: rgba(128, 255, 0, 0.15);" draggable="true"><div></div>
-                        Science
+                    <div data-ng-repeat="tag in thing.tags | orderBy:'name'" class="tag" style="background-color:rgba(1{{tag.id}}, {{tag.id}}, 20{{tag.id}}, 0.15);" draggable="true"><div></div>
+                        {{tag.name}}
                     </div>
                 </div>
             </div>

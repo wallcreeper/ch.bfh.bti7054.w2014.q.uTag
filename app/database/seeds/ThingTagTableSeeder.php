@@ -11,6 +11,11 @@ class ThingTagTableSeeder extends Seeder {
 
 		foreach(range(1, 10) as $index)
 		{
+
+			/*ThingTag::create([
+
+			]);*/
+
 			$tagCount = DB::table('tags')->count();
 			$thingCount = DB::table('things')->count();
 
