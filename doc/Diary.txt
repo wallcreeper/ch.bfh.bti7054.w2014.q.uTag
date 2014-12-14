@@ -1,0 +1,56 @@
+--- Mo 22th of sept 2014 ---
+Present: all (witts5, zimm14, rytzr1)
+Absent: -
+Done:
+	- Project initialization | all
+	- Open GIT-Repo | witts5
+	- initial Modeling of the DB-Scheme | witts5, zimm14
+ToDo:
+	- create use cases
+	- analyse target users
+	
+--- Mo 29th of sept 2014 ---
+Present: all
+Absent: - 
+Done:
+	- some use cases | all
+	- targetuser-Analysis | all
+	- evaluate requirements | all
+	- initial modeling of design | rytzr1, witts5
+	- framework-evaluation | zimm14
+Todo:
+	- continue requirements evaluation
+	- continue use cases
+	- Design prototyping
+	- continue framework-evaluation
+	
+--- Mo 6th of oct 2014 ---
+Present: all
+Absent: -
+Done:
+	- requirements-evaluation | all
+	- add more use cases | witts5
+	- add more target users | witts5
+	- design prototyping | rytzr1
+	- framework-evaluation | zimm14
+Todo:
+	- finish framework-evaluation for starting implementation
+	- implementation of DB-model-prototype
+	- continue design-prototype
+	
+--- Mo 13th of oct 2014 ---
+Present: witts5
+Absent: rytzr1, zimm14
+Done:
+	- implementation of DB-model-prototype | witts5
+Todo:
+	- rest of last week
+	
+--- Mo 20th of oct 2014 ---
+Present: all
+Absent: -
+Done:
+	- share knowledge about framework-evaluation | all
+Todo:
+	- install framework
+	- make framework compatible to all platforms (Mac/Win/Linux)
