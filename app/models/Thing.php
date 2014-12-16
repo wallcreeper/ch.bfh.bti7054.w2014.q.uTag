@@ -13,4 +13,8 @@ class Thing extends \Eloquent {
 	public function tags() {
 		return $this->belongsToMany('tag', 'thing_tag');
 	}
+
+	public function thingable() {
+		return $this->morphTo();
+	}
 }
