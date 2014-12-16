@@ -75,7 +75,8 @@
 
                 <div data-ng-repeat="thing in things | orderBy:'name'" class="thing" ondragover="demoDragover(event)">
                     <h3>{{thing.name}}</h3>
-                    <a href="https://gist.github.com/RolandR/10019868" target="_blank">gist.github.com/RolandR/10019868</a>
+                    <!-- Here further thingable-types have to be implemented if there will be any further -->
+                    <a data-ng-if="thing.thingable.uri" href="{{thing.thingable.uri}}" target="_blank">{{thing.thingable.uri}}</a>
                     <hr />
                     <div data-ng-repeat="tag in thing.tags | orderBy:'name'" class="tag" style="background-color:rgba(1{{tag.id}}, {{tag.id}}, 20{{tag.id}}, 0.15);" draggable="true"><div></div>
                         {{tag.name}}

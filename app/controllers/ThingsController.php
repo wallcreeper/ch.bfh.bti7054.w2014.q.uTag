@@ -9,7 +9,7 @@ class ThingsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$things = Thing::with('tags')->get();
+		$things = Thing::with('tags', 'thingable')->get();
 
 
 		// return View::make('things.index', compact('things'));
