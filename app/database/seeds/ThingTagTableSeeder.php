@@ -7,24 +7,27 @@ class ThingTagTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		$tagCount = DB::table('tags')->count();
+		$thingCount = DB::table('things')->count();
+
+		foreach(range(1, $thingCount) as $index)
 		{
 
-			/*ThingTag::create([
+			$faker = Faker::create();
 
-			]);*/
 
-			$tagCount = DB::table('tags')->count();
-			$thingCount = DB::table('things')->count();
+			foreach(range(1, rand(1,8)) as $j)
+			{
 
-	        DB::table('thing_tag')->insert([
-	            'tag_id' => rand(1,$tagCount),
-	            'thing_id' => $faker->unique()->numberBetween(1, $thingCount),
-	            'created_at' => date('Y-m-d H:i:s',time()),
-	            'updated_at' => date('Y-m-d H:i:s',time())
-	        ]);
+		        DB::table('thing_tag')->insert([
+		        	'tag_id' => $faker->unique()->numberBetween(1, $tagCount),
+		            'thing_id' => $index,
+		            'created_at' => date('Y-m-d H:i:s',time()),
+		            'updated_at' => date('Y-m-d H:i:s',time())
+		        ]);
+	    	}
+
 		}
 	}
 
