@@ -10,6 +10,9 @@
 ehthumbs.db
 Thumbs.db
 
+# Office Temp Files
+~$*
+
 # *******************
 # NODE, GRUNT & BOWER
 # *******************
