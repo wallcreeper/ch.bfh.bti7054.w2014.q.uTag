@@ -2,17 +2,17 @@
 /* global describe, it, beforeEach, inject, module */
 describe('Service: things', function () {
 
-  // load the service's module
-  beforeEach(module('utag.things'));
+	// load the service's module
+	beforeEach(module('utag.things'));
 
-  // instantiate service
-  var things;
-  beforeEach(inject(function (_things_) {
-    things = _things_;
-  }));
+	// instantiate service
+	var things;
+	beforeEach(inject(function (_things_) {
+		things = _things_;
+	}));
 
-  it('should do something', function () {
-    expect(!!things).toBe(true);
-  });
+	it('should do something', function () {
+		expect(!!things).toBe(true);
+	});
 
 });

@@ -1,1 +1,1 @@
-angular.module('utag.main', []);
+angular.module('utag.main', ['utag.main.controller']);

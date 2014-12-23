@@ -1,0 +1,15 @@
+<div id="loginDialog" ng-controller="AuthLoginCtrl">
+	<span>{{ message }}</span>
+	<form ng-submit="submit(credentials)">
+		<input ng-model="credentials.username" type="text" name="username" placeholder="Username" />
+		<input ng-model="credentials.password" type="password" name="password" placeholder="Password" />
+		<input type="submit" value="Login" />
+	</form>
+</div>
+
+<ul>
+	<li>Access Token: {{ $storage.access_token }}</li>
+	<li>Access Type: {{ $storage.token_type }}</li>
+	<li>Expires in: {{ $storage.expires_in }}s</li>
+	<li>Expires: {{ $storage.expires }}</li>
+</ul>

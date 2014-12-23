@@ -1,0 +1,16 @@
+<div id="loginDialog" ng-controller="AuthRegisterCtrl">
+	<span>{{ message }}</span>
+	<form ng-submit="submit(user)">
+		<input ng-model="user.username" type="text" name="username" placeholder="Username" />
+		<input ng-model="user.email" type="text" name="email" placeholder="Email" />
+		<input ng-model="user.password" type="password" name="password" placeholder="Password" />
+		<input type="submit" value="Register" />
+	</form>
+</div>
+
+<ul>
+	<li>Access Token: {{ $storage.access_token }}</li>
+	<li>Access Type: {{ $storage.token_type }}</li>
+	<li>Expires in: {{ $storage.expires_in }}s</li>
+	<li>Expires: {{ $storage.expires }}</li>
+</ul>

@@ -1,24 +1,25 @@
 .browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
 }
 
 h2 {
-    line-height: 1em;
-    font-size: 3em;
+		line-height: 1em;
+		font-size: 3em;
 }
 
-.container, .content {
-    height: 100%;
+.wrapper, .content {
+		height: 100%;
+		width: 100%;
 }
 
 .content {
-    position: relative;
+		position: relative;
 }
 
 .footer {
-    position: fixed;
-    height: 0;
+		position: fixed;
+		height: 0;
 }

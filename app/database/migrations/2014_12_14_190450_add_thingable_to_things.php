@@ -14,7 +14,7 @@ class AddThingableToThings extends Migration {
 	{
 	Schema::table('things', function($table)
 		{	
-    			$table->integer('thingable_id')->unsigned()->index();
+			$table->integer('thingable_id')->unsigned()->index();
 			$table->string('thingable_type');
 		});
 	}
@@ -27,7 +27,7 @@ class AddThingableToThings extends Migration {
 	public function down()
 	{
 	Schema::table('things', function($table)
-                {
+		{
 			$table->dropColumn('thingable_type');
 			$table->dropColumn('thingable_id');
 		});

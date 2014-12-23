@@ -1,50 +1,33 @@
 /**
+ * Controllers of the utag.main module
+ */
+angular
+.module('utag.tags.controller', [])
+
+/**
  * @ngdoc function
- * @name utag.tags:TagsCtrl
+ * @name utag.tags.controller:TagsCtrl
  * @description
  * # TagsCtrl
  * Controller of the utag app
  */
-// angular.module('utag.tags')
-//   .controller('TagsCtrl', ['$scope', 'promise', function TagsCtrl ($scope, promise) {
-//    var self = this;
+.controller('TagsCtrl', function TagsCtrl ($scope, Tags) {
+  'use strict';
 
-//     $scope.tags = promise.data.tags || [];
+  $scope.tags = Tags.repo.query();
 
-//     console.log(promise);
+})
 
-//    // function activate() {
-//    //  console.log('activate');
-//    // }
+/**
+ * @ngdoc function
+ * @name utag.tags.controller:TagsDetailCtrl
+ * @description
+ * # TagsDetailCtrl
+ * Controller of the utag app
+ */
+.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, Tags) {
+  'use strict';
 
-//  //  activate();
+  $scope.tags = Tags.repo.query();
 
-//   }]);
-
-angular.module('utag.tags')
-  .controller('TagsCtrl', ['$scope', 'Tags', function TagsCtrl ($scope, Tags) {
-    'use strict';
-    // var self = this;
-
-    $scope.tags = Tags.query();
-
-    // function activate() {
-    //  console.log('activate');
-    // }
-
-  //  activate();
-
-  }])
-  .controller('TagsDetailCtrl', ['$scope', 'Tags', function TagsDetailCtrl ($scope, Tags) {
-    'use strict';
-    // var self = this;
-
-    $scope.tags = Tags.query();
-
-    // function activate() {
-    //  console.log('activate');
-    // }
-
-  //  activate();
-
-  }]);
+});

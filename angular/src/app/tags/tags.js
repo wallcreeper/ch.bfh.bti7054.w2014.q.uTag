@@ -1,1 +1,5 @@
-angular.module('utag.tags', []);
+angular
+.module('utag.tags', [
+	'utag.tags.controller',
+	'utag.tags.service',
+]);

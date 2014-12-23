@@ -1,30 +1,19 @@
 /**
+ * Controllers of the utag.main module
+ */
+angular
+.module('utag.things.controller', [])
+
+/**
  * @ngdoc function
- * @name utag.things:ThingsCtrl
+ * @name utag.things.controller:ThingsCtrl
  * @description
  * # ThingsCtrl
  * Controller of the utag app
  */
-// angular.module('utag.things')
-//   .controller('ThingsCtrl', ['$scope', 'promise', function ThingsCtrl ($scope, promise) {
-//    var self = this;
+.controller('ThingsCtrl', function ThingsCtrl ($scope, Things) {
+	'use strict';
 
-//    $scope.things = promise.data.things || [];
+	$scope.things = Things.repo.query();
 
-//    console.log(promise);
-//   }]);
-
-angular.module('utag.things')
-  .controller('ThingsCtrl', ['$scope', 'Things', function ThingsCtrl ($scope, Things) {
-    'use strict';
-    // var self = this;
-
-    $scope.things = Things.query();
-
-    // function activate() {
-    //  console.log('activate');
-    // }
-
-  //  activate();
-
-  }]);
+});

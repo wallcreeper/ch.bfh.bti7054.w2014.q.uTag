@@ -2,24 +2,24 @@
 
 class ThingsController extends \BaseController {
 
-	/**
-	 * Display a listing of things
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$things = Thing::with('tags', 'thingable')->get();
+  /**
+   * Display a listing of things
+   *
+   * @return Response
+   */
+  public function index()
+  {
+    $things = Thing::with('tags', 'thingable')->get();
 
 
-		// return View::make('things.index', compact('things'));
-		// return Response::json(array(
-		// 	'error' => false,
-		// 	'things' => $things->toArray()),
-		// 	200
-		// );
-		return Response::json($things->toArray(), 200);
-	}
+    // return View::make('things.index', compact('things'));
+    // return Response::json(array(
+    //  'error' => false,
+    //  'things' => $things->toArray()),
+    //  200
+    // );
+    return Response::json($things->toArray(), 200);
+  }
 }
 
 ?>
