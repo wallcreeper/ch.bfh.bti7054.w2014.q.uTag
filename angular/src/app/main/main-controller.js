@@ -11,20 +11,7 @@ angular
  * # MainCtrl
  * Controller of the utag app
  */
-.controller('MainCtrl', function MainCtrl ($scope, $log, Tags, Things) {
+.controller('MainCtrl', function MainCtrl ($scope, $log) {
 	'use strict';
 
-	$scope.tags = Tags.repo.query(function(data, responseHeaders) {
-		$log.info(data);
-		$log.info(responseHeaders);
-	}, function(httpResponse) {
-		$log.info(httpResponse);
-	});
-
-	$scope.things = Things.repo.query(function(data, responseHeaders) {
-		$log.info(data);
-		$log.info(responseHeaders);
-	}, function(httpResponse) {
-		$log.info(httpResponse);
-	});
 });

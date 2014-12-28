@@ -11,9 +11,14 @@ angular
  * # ThingsCtrl
  * Controller of the utag app
  */
-.controller('ThingsCtrl', function ThingsCtrl ($scope, Things) {
+.controller('ThingsCtrl', function ThingsCtrl ($scope, $log, Things) {
 	'use strict';
 
-	$scope.things = Things.repo.query();
+	$scope.things = Things.repo.query(function(data, responseHeaders) {
+		$log.info(data);
+		$log.info(responseHeaders);
+	}, function(httpResponse) {
+		$log.info(httpResponse);
+	});
 
 });

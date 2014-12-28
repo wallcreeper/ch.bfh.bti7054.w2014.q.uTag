@@ -11,10 +11,15 @@ angular
  * # TagsCtrl
  * Controller of the utag app
  */
-.controller('TagsCtrl', function TagsCtrl ($scope, Tags) {
+.controller('TagsCtrl', function TagsCtrl ($scope, $log, Tags) {
   'use strict';
 
-  $scope.tags = Tags.repo.query();
+	$scope.tags = Tags.repo.query(function(data, responseHeaders) {
+		$log.info(data);
+		$log.info(responseHeaders);
+	}, function(httpResponse) {
+		$log.info(httpResponse);
+	});
 
 })
 
