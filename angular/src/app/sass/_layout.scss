@@ -21,7 +21,6 @@ h2.sectionTitle {
 	bottom: 0px;
 	right: 80%;
 	border-right: 1px #4499FF solid;
-	overflow-y: auto;
 }
 
 #things {
@@ -30,7 +29,15 @@ h2.sectionTitle {
 	top: 0px;
 	bottom: 0px;
 	left: 20%;
+}
+
+.scrollContainer {
 	overflow-y: auto;
+	position: absolute;
+	top: 85px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
 }
 
 .sectionHeader {
