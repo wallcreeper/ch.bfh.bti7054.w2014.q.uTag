@@ -5,6 +5,7 @@ angular
 .module('utag.tags.service', [
 	'ngResource',
 	'angular-data.DSCacheFactory',
+	'utag.utils',
 ])
 
 /**
@@ -65,7 +66,18 @@ angular
 		repo: $resource(API_PREFIX + 'tags/:id', {id: '@id'}, {
 			'get': { method: 'GET', cache: cache },
 			'query': { method: 'GET', cache: cache, isArray: true }
-		}), // Note the full endpoint address
+
+			/**
+			 * Compute color hash, when receiving response from server.
+			 * The problem is that it's called on every request to the resource, also if it's cached.
+			 * This causes much overhead, because the color hash for every tag is computed on every call to the resource.
+			 * Therfore this is only for reference or if method to cache the color is found.
+			 * This uses the transformer util as a dependency.
+			 *
+			 * 'get': { method: 'GET', cache: cache, transformResponse: transformer.transformTags },
+			 * 'query': { method: 'GET', cache: cache, isArray: true, transformResponse: transformer.transformTags }
+			 */
+		}),
 
 	};
 

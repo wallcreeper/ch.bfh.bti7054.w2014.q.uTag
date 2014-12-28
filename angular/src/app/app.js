@@ -11,6 +11,7 @@ angular
 	'ngRoute',
 	'ngDialog',
 	'utag.config',
+	'utag.utils',
 	'utag.auth',
 	'utag.main',
 	'utag.tags',

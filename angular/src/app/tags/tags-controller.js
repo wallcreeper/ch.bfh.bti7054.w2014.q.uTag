@@ -6,19 +6,37 @@ angular
 
 /**
  * @ngdoc function
+ * @name utag.tags.controller:TagsBaseCtrl
+ * @description
+ * # TagsBaseCtrl
+ * Controller of the utag app
+ */
+.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $log, Tags, colorCache) {
+  'use strict';
+
+  $scope.color = function color(tag, alpha) {
+  	return colorCache.get(tag.name, alpha).rgba;
+  };
+
+})
+
+/**
+ * @ngdoc function
  * @name utag.tags.controller:TagsCtrl
  * @description
  * # TagsCtrl
  * Controller of the utag app
  */
-.controller('TagsCtrl', function TagsCtrl ($scope, $log, Tags) {
+.controller('TagsCtrl', function TagsCtrl ($scope, $log, $controller, Tags) {
   'use strict';
 
+  $controller('TagsBaseCtrl', { $scope: $scope });
+
 	$scope.tags = Tags.repo.query(function(data, responseHeaders) {
-		$log.info(data);
-		$log.info(responseHeaders);
+		// $log.info(data);
+		// $log.info(responseHeaders);
 	}, function(httpResponse) {
-		$log.info(httpResponse);
+		// $log.info(httpResponse);
 	});
 
 })
@@ -30,9 +48,9 @@ angular
  * # TagsDetailCtrl
  * Controller of the utag app
  */
-.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, Tags) {
+.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, $log, $controller, Tags) {
   'use strict';
 
-  $scope.tags = Tags.repo.query();
+  $controller('TagsBaseCtrl', { $scope: $scope });
 
 });
