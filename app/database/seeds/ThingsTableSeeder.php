@@ -13,7 +13,7 @@ class ThingsTableSeeder extends Seeder {
 		{
 			Thing::create([
 				'name'			=> $faker->word,
-				'description'	=> $faker->sentence($faker->randomDigit)
+				'description'	=> $faker->sentence(rand(1,20))
 			]);
 		}
 	}
