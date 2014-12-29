@@ -45,7 +45,6 @@ class AuthController extends \BaseController {
 	 */
 	public function getUserId()
 	{
-		$this->tamperRequest();
 		return Response::json(Authorizer::getResourceOwnerId());
 	}
 

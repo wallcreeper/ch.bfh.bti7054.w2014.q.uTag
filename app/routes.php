@@ -21,7 +21,6 @@ Route::group(array('prefix' => 'api/v1'), function()
 {
 	Route::post('auth/login', 'AuthController@login');
 	Route::post('auth/register', 'AuthController@register');
-	Route::get('auth/user', 'AuthController@getUserId');
 });
 
 // Route group for API versioning, authenticated
@@ -29,4 +28,6 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'oauth'), function()
 {
 	Route::resource('tags', 'TagsController');
 	Route::resource('things', 'ThingsController');
+
+	Route::get('auth/user', 'AuthController@getUserId');
 });
