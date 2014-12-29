@@ -32,10 +32,10 @@ angular
 		},
 
 		resetOAuth2Session: function(data) {
-			// delete $rootScope.$storage.access_token;
-			// delete $rootScope.$storage.token_type;
-			// delete $rootScope.$storage.expires_in;
-			// delete $rootScope.$storage.expires;
+			delete $rootScope.$storage.access_token;
+			delete $rootScope.$storage.token_type;
+			delete $rootScope.$storage.expires_in;
+			delete $rootScope.$storage.expires;
 
 			isActive = false;
 		},

@@ -6,15 +6,13 @@ angular
 
 /**
  * @ngdoc function
- * @name utag.auth.controller:AuthCtrl
+ * @name utag.auth.controller:AuthBaseCtrl
  * @description
- * # AuthCtrl
+ * # AuthBaseCtrl
  * Controller of the utag app
  */
-.controller('AuthCtrl', function AuthCtrl($scope, $rootScope, $log, ngDialog, authSrvc) {
+.controller('AuthBaseCtrl', function AuthBaseCtrl($scope, $log, ngDialog, authSrvc) {
 	'use strict';
-
-	$scope.dialogShown = false;
 
 	function showLoginDialog() {
 
@@ -35,9 +33,46 @@ angular
 
 	};
 
+	function showRegisterDialog() {
+
+		if (!$scope.dialogShown) {
+			var dialog = ngDialog.open({
+				templateUrl: '/utag/auth/register.html',
+				controller: 'AuthRegisterCtrl',
+				className: 'ngdialog-theme-plain',
+				scope: $scope,
+			});
+			$scope.dialogShown = true;
+
+			dialog.closePromise.then(function (data) {
+				$scope.dialogShown = false;
+				// $log.info(data.id + ' has been dismissed.');
+			});
+		}
+
+	};
+
+	$scope.dialogShown = false;
+	$scope.showLoginDialog = showLoginDialog;
+	$scope.showRegisterDialog = showRegisterDialog;
+
+})
+
+/**
+ * @ngdoc function
+ * @name utag.auth.controller:AuthCtrl
+ * @description
+ * # AuthCtrl
+ * Controller of the utag app
+ */
+.controller('AuthCtrl', function AuthCtrl($scope, $rootScope, $log, $controller, authSrvc) {
+	'use strict';
+
+	$controller('AuthBaseCtrl', { $scope: $scope });
+
 	$rootScope.$on('event:auth-loginRequired', function(rejection) {
 		// $log.info(rejection);
-		showLoginDialog();
+		$scope.showLoginDialog();
 	});
 
 })
@@ -49,8 +84,10 @@ angular
  * # AuthLoginCtrl
  * Controller of the utag app
  */
-.controller('AuthLoginCtrl', function AuthLoginCtrl($scope, $log, authSrvc) {
+.controller('AuthLoginCtrl', function AuthLoginCtrl($scope, $log, $controller, authSrvc) {
 	'use strict';
+
+	$controller('AuthBaseCtrl', { $scope: $scope });
 
 	$scope.credentials = {username: '', password: ''};
 	$scope.message = '';
@@ -75,8 +112,10 @@ angular
  * # AuthRegisterCtrl
  * Controller of the utag app
  */
-.controller('AuthRegisterCtrl', function AuthRegisterCtrl($scope, authSrvc) {
+.controller('AuthRegisterCtrl', function AuthRegisterCtrl($scope, $log, $controller, authSrvc) {
 	'use strict';
+
+	$controller('AuthBaseCtrl', { $scope: $scope });
 
 	$scope.user = {username: '', email: '', password: ''};
 	$scope.message = '';
