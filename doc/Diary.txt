@@ -8,10 +8,10 @@ Done:
 ToDo:
 	- create use cases | all
 	- analyse target users | all
-	
+
 --- Mo 29th of sept 2014 ---
 Present: all
-Absent: - 
+Absent: -
 Done:
 	- some use cases | all
 	- targetuser-Analysis | all
@@ -23,7 +23,7 @@ Todo:
 	- continue use cases
 	- Design prototyping
 	- continue framework-evaluation
-	
+
 --- Mo 6th of oct 2014 ---
 Present: all
 Absent: -
@@ -37,7 +37,7 @@ Todo:
 	- finish framework-evaluation for starting implementation
 	- implementation of DB-model-prototype
 	- continue design-prototype
-	
+
 --- Mo 13th of oct 2014 ---
 Present: witts5
 Absent: rytzr1, zimmm14
@@ -45,7 +45,7 @@ Done:
 	- implementation of DB-model-prototype | witts5
 Todo:
 	- rest of last week
-	
+
 --- Mo 20th of oct 2014 ---
 Present: all
 Absent: -
@@ -54,29 +54,29 @@ Done:
 Todo:
 	- install framework | zimmm14
 	- make framework compatible to all platforms | all (Mac/Win/Linux)
-	
+
 --- Mo 27th of oct 2014 ---
 Present: all
 Absent: -
-Done: 
+Done:
 	- framework boilerplate | zimmm14
 	- implement design prototype | rytzr1
 Todo:
 	- install framework on other platforms | witts5, rytzr1
-	
+
 --- Mo 3rd of nov 2014 ---
 Present: witts5, zimmm14
 Absent: rytzr1
-Done: 
+Done:
 	- repair incompatibility of framework to Win | witts5, zimmm14
 Todo:
 	- learn laraval/angular
 	- create database migrations | witts5
-	
+
 --- Mo 10th of nov 2014 ---
 Present: all
 Absent: -
-Done: 
+Done:
 	- create database migrations | witts5
 Todo:
 	- install framework | rytzr1
@@ -92,11 +92,11 @@ Todo:
 	- install framework | rytzr1
 	- merge design with boilerplate | zimmm14
 	- generate DB-Seeders for existing tables | witts5
-	
+
 --- Mo 24th of nov 2014 ---
 Present: witts5, zimmm14
 Absent: rytzr1
-Done: 
+Done:
 	- framework troubleshooting for windows compatibility
 	- generate DB-seeder for TagsTable
 Todo:
@@ -110,12 +110,12 @@ Absent: rytzr1
 Done:
 	- refactoring: rename 'resource' to 'thing' because 'resource' is a keyword | zimmm14
 	- merge design with boilerplate | zimmm14
-Todo: 
+Todo:
 	- install framework | rytzr1
 	- create user authentication | zimmm14
 	- generate further DB-Seeders for existing tables | witts5
 	- implement view of things | witts5
-	
+
 --- Mo 15th of dec 2014 ---
 Present: all
 Absent: -
@@ -127,24 +127,50 @@ Todo:
 	- install framework | rytzr1
 	- create user authentication | zimmm14
 	- create media table and relations | witts5
-	
+
 --- Mo 22th of dec 2014 ---
 Present: all
-Absent: - 
+Absent: -
 Done:
 	- link tags with things in ThingTagTableSeeder | witts5
 	- create media table and relations | witts5
 	- install framework | rytzr1
 Todo:
-	- 
+	-
 
+--- Sa 27th of dec 2014 ---
+Present: zimmm14
+Absent: rytzr1, witts5
+Done:
+	- create user authentication | zimmm14
+Todo:
+	- add client caching | zimmm14
+	- improve implementation of color hash | zimmm14
+	- cleanup git repository | zimmm14
+	- implement view of things | zimmm14
 
-	
+--- So 28th of dec 2014 ---
+Present: zimmm14
+Absent: rytzr1, witts5
+Done:
+	- add client caching | zimmm14
+	- improve implementation of color hash | zimmm14
+	- implement view of things | zimmm14
+Todo:
+	- cleanup git repository | zimmm14
+
+--- Mo 29th of dec 2014 ---
+Present: witts5, zimmm14
+Absent: rytzr1
+Done:
+	- cleanup git repository | zimmm14
+Todo:
+	- implement getUserId based on the authentication token in the backend
+
 --- Mo ---
 Present: all
-Absent: - 
+Absent: -
 Done:
-	- 
+	-
 Todo:
-	- 
-	
+	-
