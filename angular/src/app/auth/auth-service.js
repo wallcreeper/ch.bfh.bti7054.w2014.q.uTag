@@ -83,7 +83,7 @@ angular
 	'use strict';
 
 	return {
-	
+
 		login: function(credentials, success, error) {
 			return $http
 				.post(API_PREFIX + 'auth/login', credentials, {
@@ -105,7 +105,11 @@ angular
 				.error(function (data, status, headers, config) {
 					// Erase the token if the user fails to log in
 					authSession.resetOAuth2Session(data);
-					authService.loginCancelled(data);
+
+					// don't reject all buffered requests if user enters wrong credentials
+					if (data.error !== 'invalid_credentials') {
+						authService.loginCancelled(data);
+					}
 
 					// Handle login errors here
 					error(data, status, headers, config);
@@ -114,7 +118,7 @@ angular
 
 		register: function(user, success, error) {
 			return $http
-				.post(API_PREFIX + 'auth/register', user, { 
+				.post(API_PREFIX + 'auth/register', user, {
 					// headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'},
 				})
 				.success(function (data, status, headers, config) {
@@ -126,7 +130,7 @@ angular
 				.error(function (data, status, headers, config) {
 					authSession.resetOAuth2Session(data);
 					authService.loginCancelled(data);
-					
+
 					// Handle login errors here
 					error(data, status, headers, config);
 				});
