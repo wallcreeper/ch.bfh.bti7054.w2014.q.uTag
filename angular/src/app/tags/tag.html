@@ -1,6 +1,4 @@
-<div class="tags">
-  <h2>Tags</h2>
-  <ul>
-		<li data-ng-repeat="tag in tags">{{tag.name}}</li>
-  </ul>
+<div ng-controller="TagsDetailCtrl" class="tag" style="background-color: {{color(tag)}};" draggable="true">
+	<div></div>
+	{{tag.name}}
 </div>

@@ -1,4 +1,4 @@
-  	<div id="tags" ng-controller="TagsCtrl">
+  	<div ng-controller="TagsCtrl" id="tags">
       <div id="tagsHeader" class="sectionHeader">
           <h2 class="sectionTitle">
               Tags
@@ -30,7 +30,7 @@
 					This tag is like waaay too long and it won't fit on the left side
 				</div> -->
 
-				<div data-ng-repeat="tag in tags | orderBy:'name'" class="tag" style="background-color: {{color(tag)}};" draggable="true">
+				<div data-ng-repeat="tag in tags | orderBy:'name'" class="tag" style="background-color: {{color(tag)}};" ng-click="showDetailView(tag.id)" draggable="true">
 					<div></div>
 					{{tag.name}}
 				</div>

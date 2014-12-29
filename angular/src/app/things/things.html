@@ -1,4 +1,4 @@
-  	<div id="things" ng-controller="ThingsCtrl">
+  	<div ng-controller="ThingsCtrl" id="things">
       <div id="thingsHeader" class="sectionHeader">
           <h2 class="sectionTitle">
               Things
@@ -74,13 +74,13 @@
 				</div> -->
 
 				<div data-ng-repeat="thing in things | orderBy:'name'" class="thing" ondragover="demoDragover(event)">
-					<h3>{{thing.name}}</h3>
+					<h3 ng-click="showDetailView(thing.id)">{{thing.name}}</h3>
 					<!-- Here further thingable-types have to be implemented if there will be any further -->
 					<a data-ng-if="thing.thingable.uri" href="{{thing.thingable.uri}}" target="_blank">{{thing.thingable.uri}}</a>
 					<hr />
 					<div>{{thing.description}}</div>
 					<hr />
-					<div data-ng-repeat="tag in thing.tags | orderBy:'name'" class="tag" style="background-color: {{color(tag)}};" draggable="true">
+					<div ng-controller="TagsCtrl" data-ng-repeat="tag in thing.tags | orderBy:'name'" ng-click="showDetailView(tag.id)" class="tag" style="background-color: {{color(tag)}};" draggable="true">
 						<div></div>
 						{{tag.name}}
 					</div>

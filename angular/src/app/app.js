@@ -41,19 +41,19 @@ angular
 			controller: 'TagsCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			//   'promise': function (Tag) {
-			//     return Tag.query();
+			//   'promise': function (Tags) {
+			//     return Tags.query();
 			//   }
 			// }
 		})
 		.when('/tags/:id/view', {
 			templateUrl: '/utag/tags/tag.html',
-			controller: 'TagsCtrl',
+			controller: 'TagsDetailCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			//   'promise': function (Tag) {
-			//     return Tag.query();
-			//   }
+			// 	tag: function($routeParams, Tags) {
+			// 		return Tags.repo.get({id: $routeParams.id});
+			// 	}
 			// }
 		})
 		.when('/things', {
@@ -68,12 +68,12 @@ angular
 		})
 		.when('/things/:id/view', {
 			templateUrl: '/utag/things/thing.html',
-			controller: 'ThingsCtrl',
+			controller: 'ThingsDetailCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			//   'promise': function (Things) {
-			//     return Things.query();
-			//   }
+			// 	thing: function($routeParams, Things) {
+			// 		return Things.repo.get({id: $routeParams.id});
+			// 	}
 			// }
 		})
 		.otherwise({

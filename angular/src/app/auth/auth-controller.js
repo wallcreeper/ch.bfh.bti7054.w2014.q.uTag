@@ -36,10 +36,10 @@ angular
 	};
 
 	$rootScope.$on('event:auth-loginRequired', function(rejection) {
-		$log.info(rejection);
+		// $log.info(rejection);
 		showLoginDialog();
 	});
- 
+
 })
 
 /**

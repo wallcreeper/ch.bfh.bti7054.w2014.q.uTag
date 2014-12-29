@@ -54,25 +54,16 @@ angular
 	});
 
 	function get(string, alpha) {
-		var color = cache.get(string);
-		return typeof color == 'undefined' ? put(string, alpha) : color;
+		return angular.isString(string) ? cache.get(string) || put(string, alpha) : "";
 	};
 
 	function put(string, alpha) {
 		$log.info('colorCache put', string);
-		alpha = arguments[1] || 0.30;
 
-		var color;
+		string = angular.isString(string) ? string : "";
+		alpha = angular.isNumber(alpha) ? alpha : parseFloat(alpha) || 0.30;
 
-		try {
-			color = cache.put(string, colorHash.hash(string, alpha));
-		}
-		catch(e) {
-			$log.error(e.message);
-			color = null;
-		}
-
-		return color;
+		return cache.put(string, colorHash.hash(string, alpha));
 	};
 
 	return {
