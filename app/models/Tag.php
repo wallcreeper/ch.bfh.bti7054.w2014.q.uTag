@@ -15,4 +15,8 @@ class Tag extends \Eloquent {
 		return $this->belongsToMany('thing', 'thing_tag');
 	}
 
+	public function user() {
+		return $this->belongsToMany('User', 'tag_user');
+	}
+
 }

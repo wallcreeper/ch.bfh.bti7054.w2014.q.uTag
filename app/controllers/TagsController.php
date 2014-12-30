@@ -9,7 +9,9 @@ class TagsController extends \BaseController {
    */
   public function index()
   {
-    $tags = Tag::all();
+    //$tags = Tag::all();
+
+    $tags = User::find(Authorizer::getResourceOwnerId())->tags;
 
     // return View::make('tags.index', compact('tags'));
     // return Response::json(array(
