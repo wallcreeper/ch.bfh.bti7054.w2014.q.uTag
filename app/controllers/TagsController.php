@@ -9,8 +9,6 @@ class TagsController extends \BaseController {
    */
   public function index()
   {
-    //$tags = Tag::all();
-
     $tags = User::find(Authorizer::getResourceOwnerId())->tags;
 
     // return View::make('tags.index', compact('tags'));
@@ -59,10 +57,11 @@ class TagsController extends \BaseController {
    */
   public function show($id)
   {
-    $tag = Tag::findOrFail($id);
+    $tag = User::find(Authorizer::getResourceOwnerId())->tags()->findOrFail($id);
 
-    // return View::make('tags.show', compact('tag'));
+
     return Response::json($tag, 200);
+    // return View::make('tags.show', compact('tag'));
   }
 
   /**
@@ -73,7 +72,7 @@ class TagsController extends \BaseController {
    */
   public function edit($id)
   {
-    $tag = Tag::find($id);
+    $tag = User::find(Authorizer::getResourceOwnerId())->tags()->findOrFail($id);
 
     return View::make('tags.edit', compact('tag'));
   }
@@ -86,7 +85,7 @@ class TagsController extends \BaseController {
    */
   public function update($id)
   {
-    $tag = Tag::findOrFail($id);
+    $tag = User::find(Authorizer::getResourceOwnerId())->tags()->findOrFail($id);
 
     $validator = Validator::make($data = Input::all(), Tag::$rules);
 
@@ -108,6 +107,7 @@ class TagsController extends \BaseController {
    */
   public function destroy($id)
   {
+    //HERE THE USER AUTH needs to bee implemented like User::find(Authorizer::getResourceOwnerId())->tags()->findOrFail($id)->destroy();?
     Tag::destroy($id);
 
     return Redirect::route('tags.index');
