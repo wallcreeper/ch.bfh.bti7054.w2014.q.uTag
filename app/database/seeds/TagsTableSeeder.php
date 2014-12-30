@@ -8,19 +8,30 @@ class TagsTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-		
-		Tag::create([
-			'name' 		=> 'Rainbow',
-			'counter' 	=> '0'		
-		]);
 
-		foreach(range(1, 10) as $index)
-		{
-			Tag::create([
-				'name' 		=> $faker->word,
-				'counter' 	=> $faker->randomDigit
+		$userCount =  DB::table('users')->count();
+
+		//loop through all users
+		foreach(range(1, $userCount) as $userIndex) {
+			$user = User::find($userIndex);
+
+			$tag = Tag::create([
+				'name' 		=> 'Rainbow',
+				'counter' 	=> '0'		
 			]);
+
+			$user->tags()->save($tag);
+
+			// for each user add 10 - 41 tags
+			foreach(range(1, rand(10,41)) as $index)
+			{
+				$tag = Tag::create([
+					'name' 		=> $faker->word,
+					'counter' 	=> '0'
+				]);
+
+				$user->tags()->save($tag);
+			}
 		}
 	}
-
 }

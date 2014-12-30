@@ -29,4 +29,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'email' => 'required|email|unique:users',
 		'password' => 'required|min:8'
 	);
+
+	public function tags() {
+		return $this->belongsToMany('Tag', 'tag_user');
+	}
+
+	public function things() {
+		return $this->belongsToMany('Thing', 'thing_user');
+	}
 }

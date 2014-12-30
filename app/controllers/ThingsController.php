@@ -9,8 +9,10 @@ class ThingsController extends \BaseController {
    */
   public function index()
   {
-    $things = Thing::with('tags', 'thingable')->get();
 
+    //$things = Thing::with('tags', 'thingable')->get();
+    $things = User::find(Authorizer::getResourceOwnerId())->things()->with('tags', 'thingable')->get();
+    
 
     // return View::make('things.index', compact('things'));
     // return Response::json(array(
