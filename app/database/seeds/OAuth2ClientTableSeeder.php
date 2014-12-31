@@ -10,11 +10,16 @@ class OAuth2ClientTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		Authorizer::getIssuer()->getClientStorage()->create(
-			$_ENV['CLIENT_NAME'],
-			$_ENV['CLIENT_ID'],
-			$_ENV['CLIENT_SECRET']
-		);
+		try {
+			Authorizer::getIssuer()->getClientStorage()->create(
+				$_ENV['CLIENT_NAME'],
+				$_ENV['CLIENT_ID'],
+				$_ENV['CLIENT_SECRET']
+			);
+		}
+		catch (\Illuminate\Database\QueryException $e) {
+			$this->command->error("SQL Error: " . $e->getMessage() . "\n");
+		}
 	}
 
 }
