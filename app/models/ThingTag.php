@@ -11,12 +11,12 @@ class ThingTag extends \Eloquent {
 	protected $fillable = [];
 	
 	//this seems to be needed if the Seeder would use the object. Since the seeder accesses the DB directly. Keep this commented out.
-	/*public function things() {
+	public function things() {
 		return $this->belongsToMany('thing');
 	}
 	
 	public function tags() {
 		return $this->belongsToMany('tag');
-	}*/
+	}
 	
 }

@@ -17,4 +17,8 @@ class Thing extends \Eloquent {
 	public function thingable() {
 		return $this->morphTo();
 	}
+
+	public function user() {
+		return $this->belongsTo('User', 'thing_user');
+	}
 }

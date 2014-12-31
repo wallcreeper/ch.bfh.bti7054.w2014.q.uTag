@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('OAuth2ClientTableSeeder');
 		$this->call('TagsTableSeeder');
 		$this->call('ThingsTableSeeder');
-		$this->call('ThingTagTableSeeder');
+		//$this->call('ThingTagTableSeeder');
 		$this->call('ThingUrisTableSeeder');
 	}
 

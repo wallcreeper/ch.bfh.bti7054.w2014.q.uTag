@@ -9,8 +9,8 @@ class ThingsController extends \BaseController {
    */
   public function index()
   {
-    $things = Thing::with('tags', 'thingable')->get();
-
+    $things = User::find(Authorizer::getResourceOwnerId())->things()->with('tags', 'thingable')->get();
+    
 
     // return View::make('things.index', compact('things'));
     // return Response::json(array(
@@ -29,7 +29,7 @@ class ThingsController extends \BaseController {
    */
   public function show($id)
   {
-    $thing = Thing::with('tags', 'thingable')->findOrFail($id);
+    $thing = User::find(Authorizer::getResourceOwnerId())->things()->with('tags', 'thingable')->findOrFail($id);
 
     // return View::make('things.show', compact('thing'));
     return Response::json($thing, 200);
