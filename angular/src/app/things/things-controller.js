@@ -6,17 +6,21 @@ angular
 
 /**
  * @ngdoc function
- * @name utag.tags.controller:TagsBaseCtrl
+ * @name utag.tags.controller:ThingsBaseCtrl
  * @description
- * # TagsBaseCtrl
+ * # ThingsBaseCtrl
  * Controller of the utag app
  */
-.controller('ThingsBaseCtrl', function TagsBaseCtrl ($scope, $log, Things, colorCache) {
-  'use strict';
+.controller('ThingsBaseCtrl', function ThingsBaseCtrl ($scope, $log, $location, Things, colorCache) {
+	'use strict';
 
-  $scope.color = function color(tag, alpha) {
-  	return colorCache.get(tag.name, alpha).rgba;
-  };
+	$scope.color = function color(tag, alpha) {
+		return colorCache.get(tag.name, alpha).rgba;
+	};
+
+	$scope.showDetailView = function showDetailView(id) {
+		$location.path('/things/'+ id + '/view');
+	};
 
 })
 
@@ -27,23 +31,22 @@ angular
  * # ThingsCtrl
  * Controller of the utag app
  */
-.controller('ThingsCtrl', function ThingsCtrl ($scope, $log, $controller, $location, Things) {
+.controller('ThingsCtrl', function ThingsCtrl ($scope, $log, $controller, Things) {
 	'use strict';
 
-	$controller('ThingsBaseCtrl', { $scope: $scope });
+	// extend ThingsCtrl
+	$controller('ThingsBaseCtrl', { $scope: $scope })
 
-	if (!$scope.things) {
-		$scope.things = Things.repo.query(function(data, responseHeaders) {
-			// $log.info(data);
-			// $log.info(responseHeaders);
-		}, function(httpResponse) {
-			// $log.info(httpResponse);
+	$scope.title = "Things";
+	$scope.things = [];
+
+	activate();
+
+	function activate() {
+		Things.repo.query(function(data) {
+				$scope.things = data;
 		});
 	}
-
-	$scope.showDetailView = function showDetailView(id) {
-		$location.path('/things/'+ id + '/view');
-	};
 
 })
 
@@ -55,17 +58,23 @@ angular
  * Controller of the utag app
  */
 .controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, Things) {
-  'use strict';
+	'use strict';
 
-  $controller('ThingsBaseCtrl', { $scope: $scope });
+	// extend ThingsCtrl
+	$controller('ThingsBaseCtrl', { $scope: $scope })
 
-  if (!$scope.thing) {
-	  $scope.thing = Things.repo.get({id: $routeParams.id}, function(data, responseHeaders) {
-			// $log.info(data);
-			// $log.info(responseHeaders);
-		}, function(httpResponse) {
-			// $log.info(httpResponse);
-		});
-  }
+	$scope.title = "ThingDetail";
+	$scope.thing = {};
+
+	activate();
+
+	function activate() {
+		if ($routeParams.id) {
+			Things.repo.get({id: $routeParams.id}, function(data) {
+					$scope.thing = data;
+			});
+		}
+
+	}
 
 });

@@ -5,8 +5,10 @@
 	<hr />
 	<div>{{thing.description}}</div>
 	<hr />
-	<div ng-controller="TagsCtrl" data-ng-repeat="tag in thing.tags | orderBy:'name'" ng-click="showDetailView(tag.id)" class="tag" style="background-color: {{color(tag)}};" draggable="true">
-		<div></div>
-		{{tag.name}}
+	<div ng-controller="TagsDetailCtrl">
+		<div data-ng-repeat="tag in thing.tags | orderBy:'name' track by tag.id" ng-click="showDetailView(tag.id)" class="tag" style="background-color: {{color(tag)}};" draggable="true">
+			<div></div>
+			{{tag.name}}
+		</div>
 	</div>
 </div>

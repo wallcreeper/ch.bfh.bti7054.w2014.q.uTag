@@ -11,11 +11,15 @@ angular
  * # TagsBaseCtrl
  * Controller of the utag app
  */
-.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $log, colorCache) {
+.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $log, $location, Tags, colorCache) {
 	'use strict';
 
 	$scope.color = function color(tag, alpha) {
 		return colorCache.get(tag.name, alpha).rgba;
+	};
+
+	$scope.showDetailView = function showDetailView(id) {
+		$location.path('/tags/'+ id + '/view');
 	};
 
 })
@@ -27,23 +31,22 @@ angular
  * # TagsCtrl
  * Controller of the utag app
  */
-.controller('TagsCtrl', function TagsCtrl ($scope, $log, $controller, $location, Tags) {
+.controller('TagsCtrl', function TagsCtrl ($scope, $log, $controller, Tags) {
 	'use strict';
 
-	$controller('TagsBaseCtrl', { $scope: $scope });
+	// extend TagsCtrl
+	$controller('TagsBaseCtrl', { $scope: $scope })
 
-	if (!$scope.tags) {
-		$scope.tags = Tags.repo.query(function(data, responseHeaders) {
-			// $log.info(data);
-			// $log.info(responseHeaders);
-		}, function(httpResponse) {
-			// $log.info(httpResponse);
+	$scope.title = "Tags";
+	$scope.tags = [];
+
+	activate();
+
+	function activate() {
+		Tags.repo.query(function(data) {
+			$scope.tags = data;
 		});
 	}
-
-	$scope.showDetailView = function showDetailView(id) {
-		$location.path('/tags/'+ id + '/view');
-	};
 
 })
 
@@ -57,15 +60,21 @@ angular
 .controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, $log, $controller, $routeParams, Tags) {
 	'use strict';
 
-	$controller('TagsBaseCtrl', { $scope: $scope });
+	// extend TagsCtrl
+	$controller('TagsBaseCtrl', { $scope: $scope })
 
-	if (!$scope.tag) {
-		$scope.tag = Tags.repo.get({id: $routeParams.id}, function(data, responseHeaders) {
-			// $log.info(data);
-			// $log.info(responseHeaders);
-		}, function(httpResponse) {
-			// $log.info(httpResponse);
-		});
+	$scope.title = "TagDetail";
+	$scope.tag = {};
+
+	activate();
+
+	function activate() {
+		if ($routeParams.id) {
+			Tags.repo.get({id: $routeParams.id}, function(data) {
+					$scope.tag = data;
+			});
+		}
+
 	}
 
 });
