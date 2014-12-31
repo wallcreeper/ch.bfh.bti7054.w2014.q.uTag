@@ -60,8 +60,8 @@ angular
 	});
 
 	var repo = $resource(API_PREFIX + 'tags/:id', {id: '@id'}, {
-		'get': { method: 'GET', cache: cache },
-		'query': { method: 'GET', cache: cache, isArray: true }
+		'get': { method: 'GET', cache: false },
+		'query': { method: 'GET', cache: false, isArray: true }
 
 		/**
 		 * Compute color hash, when receiving response from server.
