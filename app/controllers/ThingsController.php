@@ -35,4 +35,31 @@ class ThingsController extends \BaseController {
     return Response::json($thing, 200);
   }
 
+    /**
+   * Update the specified thing in storage.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function update($id)
+  {
+    $thing = User::find(Authorizer::getResourceOwnerId())->things()->findOrFail($id);
+
+    $validator = Validator::make($data = Input::all(), Thing::$rules);
+
+    if ($validator->fails())
+    {
+      return Redirect::back()->withErrors($validator)->withInput();
+    }
+
+    $thing->update($data);
+    $thingable = $thing->thingable;
+    $thingable->uri = $data['thingable']['uri'];
+    $thingable->save();
+
+    return Response::json("Saved", 200);
+    //return Redirect::route('index');
+  }
+
+
 }

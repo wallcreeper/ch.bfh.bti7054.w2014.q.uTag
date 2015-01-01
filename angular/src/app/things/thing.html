@@ -1,9 +1,10 @@
-<div ng-controller="ThingsDetailCtrl" class="thing" ondragover="demoDragover(event)">
-	<h3>{{thing.name}}</h3>
-	<!-- Here further thingable-types have to be implemented if there will be any further -->
-	<a data-ng-if="thing.thingable.uri" href="{{thing.thingable.uri}}" target="_blank">{{thing.thingable.uri}}</a>
+<div data-ng-controller="ThingsDetailCtrl" class="thing" ondragover="demoDragover(event)">
+	Title: <span data-editable-text="thing.name">{{thing.name || "empty"}}</span>
 	<hr />
-	<div>{{thing.description}}</div>
+	<!-- Here further thingable-types have to be implemented if there will be any further -->
+	Link: <span data-ng-if="thing.thingable.uri" data-editable-text="thing.thingable.uri" href="#">{{thing.thingable.uri || "empty"}}</span>
+	<hr />
+	Description: <span data-editable-text="thing.description">{{thing.description || "empty"}}</span>
 	<hr />
 	<div ng-controller="TagsDetailCtrl">
 		<div data-ng-repeat="tag in thing.tags | orderBy:'name' track by tag.id" ng-click="showDetailView(tag.id)" class="tag" style="background-color: {{color(tag)}};" draggable="true">
@@ -11,4 +12,6 @@
 			{{tag.name}}
 		</div>
 	</div>
-</div>
+	<hr />
+	<button data-ng-click="saveThing(thing)">Save Thing</button>
+</div> 

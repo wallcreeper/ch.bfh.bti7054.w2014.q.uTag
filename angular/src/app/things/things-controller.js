@@ -57,7 +57,7 @@ angular
  * # ThingsDetailCtrl
  * Controller of the utag app
  */
-.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, Things) {
+.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, $location, Things) {
 	'use strict';
 
 	// extend ThingsCtrl
@@ -65,6 +65,10 @@ angular
 
 	$scope.title = "ThingDetail";
 	$scope.thing = {};
+
+  $scope.saveThing = function saveThing(thing) {
+		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")} );
+	};
 
 	activate();
 

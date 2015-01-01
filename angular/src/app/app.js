@@ -10,6 +10,7 @@ angular
 .module('utag', [
 	'ngRoute',
 	'ngDialog',
+	'xeditable',
 	'utag.config',
 	'utag.utils',
 	'utag.auth',
@@ -87,4 +88,8 @@ angular
 		.otherwise({
 			redirectTo: '/'
 		});
+})
+
+.run(function(editableOptions) {
+  editableOptions.theme = 'default';
 });
