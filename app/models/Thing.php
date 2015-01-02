@@ -8,10 +8,10 @@ class Thing extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = ['name','description'];
+	protected $fillable = ['name', 'description'];
 
 	public function tags() {
-		return $this->belongsToMany('tag', 'thing_tag');
+		return $this->belongsToMany('Tag', 'thing_tag');
 	}
 
 	public function thingable() {

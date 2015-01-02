@@ -8,11 +8,11 @@ class Tag extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = ['name','counter'];
+	protected $fillable = ['name', 'counter'];
 
 
 	public function things() {
-		return $this->belongsToMany('thing', 'thing_tag');
+		return $this->belongsToMany('Thing', 'thing_tag');
 	}
 
 	public function user() {
