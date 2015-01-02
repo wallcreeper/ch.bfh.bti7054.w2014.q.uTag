@@ -54,7 +54,20 @@ class ThingsController extends \BaseController {
 
     function getTagsId($n)
     {
+      if (isset($n['id'])) {
         return($n['id']);
+      } else {
+        $tag = Tag::create([
+        'name'    => $n,
+        'counter'   => '1'    
+      ]);
+        $user = User::find(Authorizer::getResourceOwnerId());
+        $user->tags()->save($tag);
+
+        return $tag->id;
+
+
+      }
     }
 
     $tags = array_map("getTagsId", $data['tags']);
