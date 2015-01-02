@@ -15,7 +15,11 @@ angular
 	'use strict';
   return {
     restrict: 'A',
-    templateUrl: '/utag/things/thing-directive.html',
+    templateUrl: function(elem, attr) {
+    	var type = attr.type ? '-'+attr.type : '';
+    	$log.info(type);
+      return '/utag/things/thing'+type+'-directive.html';
+    },
     link: function(scope, elem, attrs) {
       $log.info('utag-thing directive');
     }

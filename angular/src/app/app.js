@@ -10,6 +10,8 @@ angular
 .module('utag', [
 	'ngRoute',
 	'ngDialog',
+	'xeditable',
+	'ngTagsInput',
 	'utag.config',
 	'utag.utils',
 	'utag.auth',
@@ -75,7 +77,7 @@ angular
 			// }
 		})
 		.when('/things/:id/view', {
-			templateUrl: '/utag/things/thing.html',
+			templateUrl: '/utag/things/thing-edit.html',
 			controller: 'ThingsDetailCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
@@ -87,4 +89,7 @@ angular
 		.otherwise({
 			redirectTo: '/'
 		});
+})
+.run(function(editableOptions) {
+	editableOptions.theme = 'default';
 });
