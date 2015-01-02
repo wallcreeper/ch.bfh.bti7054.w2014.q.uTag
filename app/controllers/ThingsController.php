@@ -52,7 +52,19 @@ class ThingsController extends \BaseController {
       return Redirect::back()->withErrors($validator)->withInput();
     }
 
+    function getTagsId($n)
+    {
+        return($n['id']);
+    }
+
+    $tags = array_map("getTagsId", $data['tags']);
+
+
     $thing->update($data);
+
+    $thing->tags()->sync($tags);
+    //return Response::json($tags, 501);
+    //$tags->update();
     $thingable = $thing->thingable;
     $thingable->uri = $data['thingable']['uri'];
     $thingable->save();

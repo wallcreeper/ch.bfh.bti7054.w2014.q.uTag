@@ -10,7 +10,9 @@ angular
 .module('utag', [
 	'ngRoute',
 	'ngDialog',
-	'xeditable',
+  'ngSanitize',
+  'xeditable',
+  'ui.select',
 	'utag.config',
 	'utag.utils',
 	'utag.auth',

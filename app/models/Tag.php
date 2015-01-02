@@ -10,6 +10,8 @@ class Tag extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = ['name','counter'];
 
+	protected $hidden = ['counter', 'created_at', 'updated_at', 'user', 'pivot'];
+
 
 	public function things() {
 		return $this->belongsToMany('thing', 'thing_tag');

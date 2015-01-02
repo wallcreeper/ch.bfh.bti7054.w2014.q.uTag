@@ -57,20 +57,27 @@ angular
  * # ThingsDetailCtrl
  * Controller of the utag app
  */
-.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, $location, Things) {
+.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, $location, Things, Tags) {
 	'use strict';
 
 	// extend ThingsCtrl
 	$controller('ThingsBaseCtrl', { $scope: $scope })
 
 	$scope.title = "ThingDetail";
-	$scope.thing = {};
+
+  //pre-Initialize structure for ui-select
+	$scope.thing = { tags: [] };
+  $scope.tags = [];
 
   $scope.saveThing = function saveThing(thing) {
-		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")} );
+		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
 	};
 
-	activate();
+  $scope.cancel = function cancel() {
+    $location.path('/');
+  }
+
+  activate();
 
 	function activate() {
 		if ($routeParams.id) {
@@ -78,7 +85,9 @@ angular
 					$scope.thing = data;
 			});
 		}
-
+    Tags.repo.query(function(data) {
+      $scope.tags = data;
+    });
 	}
 
 });
