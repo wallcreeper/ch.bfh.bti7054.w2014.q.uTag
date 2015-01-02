@@ -113,4 +113,28 @@ class TagsController extends \BaseController {
     return Redirect::route('tags.index');
   }
 
+
+  /**
+   * Return matching tags
+   *
+   * @return Response
+   */
+  public function search()
+  {
+    $q = Input::get('keywords');
+
+    $searchTerms = $q; //explode(' ', $q);
+
+    // $query = DB::table('tags');
+    $query = User::find(Authorizer::getResourceOwnerId())->tags();
+
+    foreach($searchTerms as $term)
+    {
+        $query->where('name', 'LIKE', '%'. $term .'%');
+    }
+
+    $tags = $query->get();
+    return Response::json($tags, 200);
+	}
+
 }

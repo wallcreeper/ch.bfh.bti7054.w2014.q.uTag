@@ -1,0 +1,8 @@
+<h3 data-ng-click="showThingDetailView(thing.id)">{{thing.name}}</h3>
+<!-- Here further thingable-types have to be implemented if there will be any further -->
+<a data-ng-if="thing.thingable.uri" href="{{thing.thingable.uri}}" target="_blank">{{thing.thingable.uri}}</a>
+<hr />
+<div>{{thing.description}}</div>
+<hr />
+<div data-ng-repeat="tag in thing.tags | orderBy:'name'" data-ng-click="showTagDetailView(tag.id)" data-ng-include="'/utag/tags/tag.html'">
+</div>

@@ -1,2 +1,44 @@
-<div data-ng-include="'/utag/tags/tags.html'"></div>
-<div data-ng-include="'/utag/things/things.html'"></div>
+		<div id="siteMain">
+			<div id="tags">
+				<div id="tagsHeader" class="sectionHeader">
+						<h2 class="sectionTitle">
+							Tags
+						</h2>
+						<div class="inputContainer searchContainer">
+							<input data-ng-model="tagKeywords" data-ng-change="searchTags()" type="search" name="keywords" autofocus id="tagSearch" placeholder="Search Tags..." />
+						</div>
+				</div>
+				<div class="scrollContainer">
+					<h3>Filter Tags</h3>
+					<span><button data-ng-click="clearSelectedTags()">Clear</button></span>
+					<div class="pool poolFilterTags">
+						<div data-ng-repeat="tag in selectedTags | orderBy:'name' track by tag.id">
+							<div data-utag-tag data-tag="tag" data-ng-click="deselectTag(tag)" class="tag" draggable="true"></div>
+						</div>
+					</div>
+				</div>
+				<div class="scrollContainer">
+					<h3>Search Tags</h3>
+					<div class="pool poolSearchTags">
+						<div data-ng-repeat="tag in tags | orderBy:'name'">
+							<div data-utag-tag data-tag="tag" data-ng-click="selectTag(tag)" class="tag" draggable="true"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="things">
+				<div id="thingsHeader" class="sectionHeader">
+						<h2 class="sectionTitle">
+							Things
+						</h2>
+						<div class="inputContainer searchContainer" ondragover="demoDragover(event)">
+							<input data-ng-model="thingKeywords" data-ng-change="searchThings()" type="text" autofocus id="thingSearch" placeholder="Search things..." />
+						</div>
+				</div>
+				<div class="scrollContainer">
+					<!--  | filter:thingsFilter:things:filteredTags -->
+					<div data-ng-repeat="thing in filteredThings | orderBy:'name'" data-ng-include="'/utag/things/thing.html'"></div>
+				</div>
+			</div>
+		</div>

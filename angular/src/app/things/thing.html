@@ -1,14 +1,1 @@
-<div ng-controller="ThingsDetailCtrl" class="thing" ondragover="demoDragover(event)">
-	<h3>{{thing.name}}</h3>
-	<!-- Here further thingable-types have to be implemented if there will be any further -->
-	<a data-ng-if="thing.thingable.uri" href="{{thing.thingable.uri}}" target="_blank">{{thing.thingable.uri}}</a>
-	<hr />
-	<div>{{thing.description}}</div>
-	<hr />
-	<div ng-controller="TagsDetailCtrl">
-		<div data-ng-repeat="tag in thing.tags | orderBy:'name' track by tag.id" ng-click="showDetailView(tag.id)" class="tag" style="background-color: {{color(tag)}};" draggable="true">
-			<div></div>
-			{{tag.name}}
-		</div>
-	</div>
-</div>
+<div data-utag-thing data-thing="thing" class="thing" ondragover="demoDragover(event)"></div>

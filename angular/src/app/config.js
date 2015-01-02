@@ -15,5 +15,7 @@ var config = {
 var config_module = angular.module('utag.config', []);
 
 angular.forEach(config, function(value, key) {
+	'use strict';
+
 	config_module.constant(key, value);
 });

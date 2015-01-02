@@ -11,7 +11,7 @@ angular
  * # AuthBaseCtrl
  * Controller of the utag app
  */
-.controller('AuthBaseCtrl', function AuthBaseCtrl($scope, $log, ngDialog, authSrvc) {
+.controller('AuthBaseCtrl', function AuthBaseCtrl($scope, $log, ngDialog) {
 	'use strict';
 
 	function showLoginDialog() {
@@ -31,7 +31,7 @@ angular
 			});
 		}
 
-	};
+	}
 
 	function showRegisterDialog() {
 
@@ -50,7 +50,7 @@ angular
 			});
 		}
 
-	};
+	}
 
 	$scope.dialogShown = false;
 	$scope.showLoginDialog = showLoginDialog;
@@ -130,6 +130,6 @@ angular
 			$scope.message = data.error_description;
 			// $log.info(data);
 		});
-	}
+	};
 
 });

@@ -12,7 +12,7 @@ angular
 
 	return {
 		hash: function(inputString, alpha) {
-			inputString = inputString.split("");
+			inputString = inputString.split('');
 			var r = 0;
 			var g = 0;
 			var b = 0;
@@ -23,31 +23,31 @@ angular
 				g += (Math.sqrt(inputString[i].charCodeAt(0)) * 28541);
 				b += (Math.sin(inputString[i].charCodeAt(0)) * 66863);
 			}
-			r = Math.abs(~~(r % 255));
-			g = Math.abs(~~(g % 255));
-			b = Math.abs(~~(b % 255));
+			r = Math.abs(Math.floor(r % 255));
+			g = Math.abs(Math.floor(g % 255));
+			b = Math.abs(Math.floor(b % 255));
 
-			var rgb = "rgb("+r+", "+g+", "+b+")";
+			var rgb = 'rgb('+r+', '+g+', '+b+')';
 
 			if (!alpha && alpha !== 0) {
 				alpha = 1;
 			}
 
-			var rgba = "rgba("+r+", "+g+", "+b+", "+alpha+")";
+			var rgba = 'rgba('+r+', '+g+', '+b+', '+alpha+')';
 
-			var hex = "#";
+			var hex = '#';
 
-			hex += ("00" + r.toString(16)).substr(-2,2).toUpperCase();
-			hex += ("00" + g.toString(16)).substr(-2,2).toUpperCase();
-			hex += ("00" + b.toString(16)).substr(-2,2).toUpperCase();
+			hex += ('00' + r.toString(16)).substr(-2,2).toUpperCase();
+			hex += ('00' + g.toString(16)).substr(-2,2).toUpperCase();
+			hex += ('00' + b.toString(16)).substr(-2,2).toUpperCase();
 
 			return {
-				 r: r
-				,g: g
-				,b: b
-				,rgb: rgb
-				,rgba: rgba
-				,hex: hex
+				r: r,
+				g: g,
+				b: b,
+				rgb: rgb,
+				rgba: rgba,
+				hex: hex
 			};
 		}
 	};

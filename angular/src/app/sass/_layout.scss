@@ -33,7 +33,7 @@ h2.sectionTitle {
 
 .scrollContainer {
 	overflow-y: auto;
-	position: absolute;
+	position: relative;
 	top: 85px;
 	bottom: 0px;
 	right: 0px;
@@ -41,7 +41,7 @@ h2.sectionTitle {
 }
 
 .sectionHeader {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 5px;

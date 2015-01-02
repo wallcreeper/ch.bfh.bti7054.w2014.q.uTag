@@ -12,7 +12,7 @@ angular
 .factory('colorCache', function colorCache($log, DSCacheFactory, colorHash) {
 	'use strict';
 
-	var cache = DSCacheFactory('colorCache', {
+	var cache = new DSCacheFactory('colorCache', {
 
 		// This cache can hold 1000 items
 		capacity: 1000,
@@ -54,17 +54,17 @@ angular
 	});
 
 	function get(string, alpha) {
-		return angular.isString(string) ? cache.get(string) || put(string, alpha) : "";
-	};
+		return angular.isString(string) ? cache.get(string) || put(string, alpha) : '';
+	}
 
 	function put(string, alpha) {
 		$log.info('colorCache put', string);
 
-		string = angular.isString(string) ? string : "";
+		string = angular.isString(string) ? string : '';
 		alpha = angular.isNumber(alpha) ? alpha : parseFloat(alpha) || 0.30;
 
 		return cache.put(string, colorHash.hash(string, alpha));
-	};
+	}
 
 	return {
 

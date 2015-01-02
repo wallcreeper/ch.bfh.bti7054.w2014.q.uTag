@@ -1,5 +1,5 @@
 /**
- * Controllers of the utag.main module
+ * Controllers of the utag.things module
  */
 angular
 .module('utag.things.controller', [])
@@ -11,14 +11,12 @@ angular
  * # ThingsBaseCtrl
  * Controller of the utag app
  */
-.controller('ThingsBaseCtrl', function ThingsBaseCtrl ($scope, $log, $location, Things, colorCache) {
+.controller('ThingsBaseCtrl', function ThingsBaseCtrl ($scope, $controller, $location) {
 	'use strict';
 
-	$scope.color = function color(tag, alpha) {
-		return colorCache.get(tag.name, alpha).rgba;
-	};
+	$controller('TagsBaseCtrl', { $scope: $scope });
 
-	$scope.showDetailView = function showDetailView(id) {
+	$scope.showThingDetailView = function showThingsDetailView(id) {
 		$location.path('/things/'+ id + '/view');
 	};
 
@@ -31,21 +29,23 @@ angular
  * # ThingsCtrl
  * Controller of the utag app
  */
-.controller('ThingsCtrl', function ThingsCtrl ($scope, $log, $controller, Things) {
+.controller('ThingsCtrl', function ThingsCtrl ($scope, $controller, Things) {
 	'use strict';
 
 	// extend ThingsCtrl
-	$controller('ThingsBaseCtrl', { $scope: $scope })
+	$controller('ThingsBaseCtrl', { $scope: $scope });
 
-	$scope.title = "Things";
-	$scope.things = [];
+	$scope.title = 'Things';
+	$scope.things = $scope.things || [];
 
 	activate();
 
 	function activate() {
-		Things.repo.query(function(data) {
-				$scope.things = data;
-		});
+		if ($scope.things.length === 0) {
+			Things.repo.query(function(data) {
+					$scope.things = data;
+			});
+		}
 	}
 
 })
@@ -57,14 +57,14 @@ angular
  * # ThingsDetailCtrl
  * Controller of the utag app
  */
-.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, Things) {
+.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $controller, $routeParams, Things) {
 	'use strict';
 
 	// extend ThingsCtrl
-	$controller('ThingsBaseCtrl', { $scope: $scope })
+	$controller('ThingsBaseCtrl', { $scope: $scope });
 
-	$scope.title = "ThingDetail";
-	$scope.thing = {};
+	$scope.title = 'ThingDetail';
+	$scope.thing = $scope.thing || {};
 
 	activate();
 

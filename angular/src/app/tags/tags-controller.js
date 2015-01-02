@@ -11,14 +11,10 @@ angular
  * # TagsBaseCtrl
  * Controller of the utag app
  */
-.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $log, $location, Tags, colorCache) {
+.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $location) {
 	'use strict';
 
-	$scope.color = function color(tag, alpha) {
-		return colorCache.get(tag.name, alpha).rgba;
-	};
-
-	$scope.showDetailView = function showDetailView(id) {
+	$scope.showTagDetailView = function showTagsDetailView(id) {
 		$location.path('/tags/'+ id + '/view');
 	};
 
@@ -31,21 +27,23 @@ angular
  * # TagsCtrl
  * Controller of the utag app
  */
-.controller('TagsCtrl', function TagsCtrl ($scope, $log, $controller, Tags) {
+.controller('TagsCtrl', function TagsCtrl ($scope, $controller, Tags) {
 	'use strict';
 
 	// extend TagsCtrl
-	$controller('TagsBaseCtrl', { $scope: $scope })
+	$controller('TagsBaseCtrl', { $scope: $scope });
 
-	$scope.title = "Tags";
-	$scope.tags = [];
+	$scope.title = 'Tags';
+	$scope.tags = $scope.tags || [];
 
 	activate();
 
 	function activate() {
-		Tags.repo.query(function(data) {
-			$scope.tags = data;
-		});
+		if ($scope.tags.length === 0) {
+			Tags.repo.query(function(data) {
+				$scope.tags = data;
+			});
+		}
 	}
 
 })
@@ -57,14 +55,14 @@ angular
  * # TagsDetailCtrl
  * Controller of the utag app
  */
-.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, $log, $controller, $routeParams, Tags) {
+.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, $controller, $routeParams, Tags) {
 	'use strict';
 
 	// extend TagsCtrl
-	$controller('TagsBaseCtrl', { $scope: $scope })
+	$controller('TagsBaseCtrl', { $scope: $scope });
 
-	$scope.title = "TagDetail";
-	$scope.tag = {};
+	$scope.title = 'TagDetail';
+	$scope.tag = $scope.tag || {};
 
 	activate();
 
@@ -74,7 +72,6 @@ angular
 					$scope.tag = data;
 			});
 		}
-
 	}
 
 });

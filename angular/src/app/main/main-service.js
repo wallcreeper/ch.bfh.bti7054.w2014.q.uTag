@@ -1,24 +1,22 @@
 /**
- * Services of the utag.tags module
+ * Services of the utag.main module
  */
 angular
-.module('utag.tags.service', [
-	'ngResource',
+.module('utag.main.service', [
 	'angular-data.DSCacheFactory',
-	'utag.utils',
 ])
 
 /**
  * @ngdoc service
- * @name utag.tag.service:Tags
+ * @name utag.utils:selectedTagsCache
  * @description
- * # Tags
+ * # selectedTagsCache
  * Service in the utag app.
  */
-.factory('Tags', function($resource, DSCacheFactory, API_PREFIX) {
+.factory('selectedTagsCache', function selectedTagsCache($log, DSCacheFactory) {
 	'use strict';
 
-	var cache = new DSCacheFactory('TagsCache', {
+	var cache = new DSCacheFactory('selectedTagsCache', {
 
 		// This cache can hold 1000 items
 		capacity: 1000,
@@ -27,7 +25,7 @@ angular
 		// maxAge: Number.MAX_VALUE,
 
 		// Items will be actively deleted when they expire
-		deleteOnExpire: 'passive',
+		// deleteOnExpire: 'passive',
 
 		// This callback is executed when the item specified by "key" expires.
 		// At this point you could retrieve a fresh value for "key"
@@ -46,7 +44,7 @@ angular
 		// disabled: false,
 
 		// This cache will sync itself with localStorage
-		storageMode: 'sessionStorage',
+		storageMode: 'localStorage',
 
 		// Custom implementation of localStorage
 		// storageImpl: mylocalStoragePolyfill,
@@ -59,28 +57,31 @@ angular
 
 	});
 
-	var repo = $resource(API_PREFIX + 'tags/:id', {id: '@id'}, {
-		'get': { method: 'GET', cache: false },
-		'query': { method: 'GET', cache: false, isArray: true }
+	function push(tag) {
+		return cache.put(tag.id, tag);
+	}
 
-		/**
-		 * Compute color hash, when receiving response from server.
-		 * The problem is that it's called on every request to the resource, also if it's cached.
-		 * This causes much overhead, because the color hash for every tag is computed on every call to the resource.
-		 * Therfore this is only for reference or if method to cache the color is found.
-		 * This uses the transformer util as a dependency.
-		 *
-		 * 'get': { method: 'GET', cache: cache, transformResponse: transformer.transformTags },
-		 * 'query': { method: 'GET', cache: cache, isArray: true, transformResponse: transformer.transformTags }
-		 */
-	});
+	function pop(tag) {
+		return cache.remove(tag.id);
+	}
+
+	function all() {
+		var tags = [];
+		for (var key in cache.keySet()) {
+			tags.push(cache.get(key));
+		}
+		return tags;
+	}
+
+	function clear() {
+		cache.removeAll();
+	}
 
 	return {
-
-		cache: cache,
-
-		repo: repo,
-
+		push: push,
+		pop: pop,
+		all: all,
+		clear: clear,
 	};
 
 });

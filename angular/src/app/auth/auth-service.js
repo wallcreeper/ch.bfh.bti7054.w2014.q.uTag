@@ -15,6 +15,7 @@ angular
  * Service in the utag app.
  */
 .factory('authSession', function authSession($rootScope, $sessionStorage, $log) {
+	'use strict';
 
 	$rootScope.$storage = $sessionStorage;
 
@@ -23,18 +24,18 @@ angular
 	var provider = {
 
 		setOAuth2Session: function(data) {
-			$rootScope.$storage.access_token = data.access_token;
-			$rootScope.$storage.token_type = data.token_type;
-			$rootScope.$storage.expires_in = data.expires_in;
+			$rootScope.$storage.accessToken = data.access_token;
+			$rootScope.$storage.tokenType = data.token_type;
+			$rootScope.$storage.expiresIn = data.expires_in;
 			$rootScope.$storage.expires = new Date(new Date().getTime() + 1000 * data.expires_in);
 
 			isActive = true;
 		},
 
 		resetOAuth2Session: function(data) {
-			delete $rootScope.$storage.access_token;
-			delete $rootScope.$storage.token_type;
-			delete $rootScope.$storage.expires_in;
+			delete $rootScope.$storage.accessToken;
+			delete $rootScope.$storage.tokenType;
+			delete $rootScope.$storage.expiresIn;
 			delete $rootScope.$storage.expires;
 
 			isActive = false;
@@ -45,7 +46,7 @@ angular
 		},
 
 		getAccessToken: function() {
-			return $rootScope.$storage.access_token || "not a valid token";
+			return $rootScope.$storage.accessToken || 'not a valid token';
 		},
 
 		getExpires: function() {
@@ -59,7 +60,7 @@ angular
 	};
 
 	provider.getAuthHeader = function() {
-		return { 'Authorization': "Bearer " + provider.getAccessToken() };
+		return { 'Authorization': 'Bearer ' + provider.getAccessToken() };
 	};
 
 	provider.getMilisUntilExpiration = function () {
@@ -163,13 +164,15 @@ angular
 // https://docs.angularjs.org/api/ng/service/$http Interceptors
 // register the interceptor as a service
 .factory('authInterceptor', function authInterceptor($q, authSession) {
+	'use strict';
+
 	return {
 		// optional method
 		'request': function(config) {
 			// do something on success
 
-			header = authSession.getAuthHeader();
-			for (key in header) {
+			var header = authSession.getAuthHeader();
+			for (var key in header) {
 				config.headers[key] = header[key];
 			}
 
