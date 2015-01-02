@@ -10,7 +10,7 @@ class ThingsTableSeeder extends Seeder {
 		echo 'ThingsTableSeeder:
 ';
 
-
+		
 		$userCount =  DB::table('users')->count();
 
 		//loop through all the users
@@ -36,10 +36,15 @@ class ThingsTableSeeder extends Seeder {
 
 				$user->things()->save($thing);
 
-				foreach(range(1,rand(1,$tagCount % 11)) as $tagIndex) {
+				$tagsAr = array();
+				foreach(range(1,rand(1,$tagCount)) as $tagIndex) {
 
-					$thing->tags()->save($tags->random(1));
+					array_push($tagsAr, rand(1,$tagCount)); 
+
+					//$thing->tags()->attach($tags->random(1));
 				}
+				$tagsAr = array_unique($tagsAr);
+				$thing->tags()->sync($tagsAr);
 			}
 
 		}
