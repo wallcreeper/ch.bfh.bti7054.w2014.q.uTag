@@ -52,13 +52,19 @@ class ThingsController extends \BaseController {
       return Redirect::back()->withErrors($validator)->withInput();
     }
 
+   /**
+   * Get tag-ids for DB-Insert
+   *
+   * @param  object $n
+   * @return array(int ids)
+   */
     function getTagsId($n)
     {
       if (isset($n['id'])) {
         return($n['id']);
       } else {
         $tag = Tag::create([
-        'name'    => $n,
+        'name'    => $n['name'],
         'counter'   => '1'    
       ]);
         $user = User::find(Authorizer::getResourceOwnerId());

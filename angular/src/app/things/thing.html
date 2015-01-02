@@ -6,23 +6,11 @@
 	<hr />
 	Description: <span data-editable-text="thing.description">{{thing.description || "empty"}}</span>
 	<hr />
-
-  <ui-select multiple tagging tagging-label="(custom 'new' label)" ng-model="thing.tags" theme="select2" style="width:90%;">
-    <ui-select-match placeholder="Select tag...">{{$item.name}}</ui-select-match>
-    <ui-select-choices repeat="tag in tags | filter: {name: $select.search}">
-      {{tag.name}}
-    </ui-select-choices>
-  </ui-select>
-
+  Tags:
+  <tags-input ng-model="thing.tags">
+    <auto-complete source="searchTags($query)"></auto-complete>
+  </tags-input>
   <hr />
-
-	<!--<div ng-controller="TagsDetailCtrl">
-		<div data-ng-repeat="tag in thing.tags | orderBy:'name'" ng-click="showDetailView(tag.id)" class="tag" style="background-color: {{color(tag)}};" draggable="true">
-			<div></div>
-			{{tag.name}}
-		</div>
-	</div>-->
-	<hr />
 	<button data-ng-click="saveThing(thing)">Save Thing</button>
   <button data-ng-click="cancel()">Cancel</button>
 </div>
