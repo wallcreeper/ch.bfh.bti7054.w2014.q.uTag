@@ -4,5 +4,5 @@
 <hr />
 <div>{{thing.description}}</div>
 <hr />
-<div data-ng-repeat="tag in thing.tags | orderBy:'name'" data-ng-click="showTagDetailView(tag.id)" data-ng-include="'/utag/tags/tag.html'">
+<div class="tagContainer" data-ng-repeat="tag in thing.tags | orderBy:'name'" data-ng-click="showTagDetailView(tag.id)" data-ng-include="'/utag/tags/tag.html'">
 </div>
