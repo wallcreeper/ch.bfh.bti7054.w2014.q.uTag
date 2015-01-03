@@ -48,9 +48,9 @@
 	<!-- Add your site or application content here -->
 	<div class="wrapper">
 	  <div class="header">
-		<div id="user-menu" data-ng-controller="AuthCtrl">
-		   <button id="user-login" data-ng-click="login()">Login</button>
-		   <button id="user-logout" data-ng-click="logout()">Logout</button>
+		<div id="user-menu">
+		   <button data-ng-show="!isAuthenticated()" id="user-login" data-ng-click="login()">Login</button>
+		   <button data-ng-show="isAuthenticated()" id="user-logout" data-ng-click="logout()">Logout</button>
 		</div>
 	  </div>
 	  <div class="content" data-ng-view=""></div>

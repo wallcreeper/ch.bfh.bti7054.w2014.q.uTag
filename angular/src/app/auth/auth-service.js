@@ -138,7 +138,6 @@ angular
 		},
 
 		logout: function() {
-			console.log("fuck");
 			authSession.resetOAuth2Session();
 			authService.loginCancelled();
 		},

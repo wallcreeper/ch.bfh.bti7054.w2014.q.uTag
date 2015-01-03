@@ -76,6 +76,9 @@ angular
 	});
 
 	$scope.logout = authSrvc.logout;
+	$scope.isAuthenticated = authSrvc.isAuthenticated;
+
+	console.log($scope.isAuthenticated);
 
 })
 
