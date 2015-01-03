@@ -2,18 +2,17 @@
 'use strict';
 
 var gulp = require('gulp'),
-		g = require('gulp-load-plugins')({lazy: false}),
-		noop = g.util.noop,
-		es = require('event-stream'),
-		bowerFiles = require('main-bower-files'),
-		// rimraf = require('rimraf'),
-		del = require('del'),
-		vinylPaths = require('vinyl-paths'),
-		queue = require('streamqueue'),
-		lazypipe = require('lazypipe'),
-		stylish = require('jshint-stylish'),
-		bower = require('./bower'),
-		isWatching = false;
+	g = require('gulp-load-plugins')({lazy: false}),
+	noop = g.util.noop,
+	es = require('event-stream'),
+	bowerFiles = require('main-bower-files'),
+	del = require('del'),
+	vinylPaths = require('vinyl-paths'),
+	queue = require('streamqueue'),
+	lazypipe = require('lazypipe'),
+	stylish = require('jshint-stylish'),
+	bower = require('./bower'),
+	isWatching = false;
 
 var htmlminOpts = {
 	removeComments: true,
@@ -31,16 +30,15 @@ gulp.task('jshint', function () {
 		'./gulpfile.js',
 		'./src/app/**/*.js'
 	])
-		.pipe(g.cached('jshint'))
-		.pipe(jshint('./.jshintrc'))
-		.pipe(livereload());
+	.pipe(g.cached('jshint'))
+	.pipe(jshint('./.jshintrc'))
+	.pipe(livereload());
 });
 
 /**
  * CSS
  */
 gulp.task('clean-css', function (done) {
-	// rimraf('./.tmp/css', done);
 	del([
 		'./.tmp/css',
 	], done);
@@ -51,10 +49,10 @@ gulp.task('styles', ['clean-css'], function () {
 		'./src/app/**/*.scss',
 		'!./src/app/**/_*.scss'
 	])
-		.pipe(g.sass({errLogToConsole: true, sourceComments: 'map', sourceMap: 'scss'}))
-		.pipe(gulp.dest('./.tmp/css/'))
-		.pipe(g.cached('built-css'))
-		.pipe(livereload());
+	.pipe(g.sass({errLogToConsole: true, sourceComments: 'map', sourceMap: 'scss'}))
+	.pipe(gulp.dest('./.tmp/css/'))
+	.pipe(g.cached('built-css'))
+	.pipe(livereload());
 });
 
 gulp.task('styles-dist', ['styles'], function () {
@@ -132,7 +130,6 @@ gulp.task('assets', function () {
  * clean-dist
  */
 gulp.task('clean-dist', function (cb) {
-		// rimraf('./dist', cb);
 	del([
 		'./.tmp/css',
 	], cb);
@@ -341,7 +338,6 @@ function jshint (jshintfile) {
 gulp.task('clean', function () {
 	var vp = vinylPaths();
 	return gulp.src(['./dist', './.tmp', './../public/*', '!./../public/index.php'], { dot: true, read: false }) // much faster
-		// .pipe(g.rimraf({force: true}));
 		.pipe(vp)
 		.on('end', function () {
 				del(vp.paths, {force: true});
