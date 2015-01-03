@@ -6,8 +6,7 @@ Link: <span data-ng-if="thing.thingable.uri" data-editable-text="thing.thingable
 Description: <span data-editable-text="thing.description">{{thing.description || "empty"}}</span>
 <hr />
 Tags:
-<tags-input ng-model="thing.tags">
-<!-- <auto-complete source="tags"></auto-complete> -->
+<tags-input data-display-property="name" data-ng-model="thing.tags">
 <auto-complete source="searchTags($query)"></auto-complete>
 </tags-input>
 <hr />

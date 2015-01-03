@@ -11,7 +11,7 @@ angular
  * # MainCtrl
  * Controller of the utag app
  */
-.controller('MainCtrl', function MainCtrl ($scope, $controller, $log, searcher, selectedTagsCache, Tags, Things) {
+.controller('MainCtrl', function MainCtrl ($scope, $controller, $log, api, selectedTagsCache, Tags, Things) {
 	'use strict';
 
 	// extend MainCtrl
@@ -46,7 +46,7 @@ angular
 	};
 
 	$scope.$watchCollection('selectedTags', function (newVal, oldVal) {
-		$log.info('watchCollection');
+		// $log.info('watchCollection');
 		// $log.info(newVal, oldVal);
 
 		if (newVal.length > 0) {
@@ -61,43 +61,39 @@ angular
 
 	$scope.searchTags = function() {
 		var keywords = $scope.tagKeywords ? $scope.tagKeywords.split(' ') : [];
-		searcher.searchTags(keywords).then(function (response) {
+		api.searchTags(keywords).then(function (response) {
 			$scope.tags = response.data;
 		});
 	};
 
 	$scope.searchThings = function() {
 		var keywords = $scope.thingKeywords ? $scope.thingKeywords.split(' ') : [];
-		searcher.searchThingsByTags(keywords).then(function (response) {
+		api.searchThingsByTags(keywords).then(function (response) {
 			$scope.filteredThings = response.data;
 		});
 	};
 
 	function activate() {
 		if ($scope.tags.length === 0 || $scope.filteredThings.length === 0) {
-			fetchThingsWithTags();
+			fetchThings();
+			fetchTags();
 		}
 	}
 
-	function fetchTags(things) {
-		var tags = [];
-		for (var i = things.length - 1; i >= 0; i--) {
-			for (var j = things[i].tags.length - 1; j >= 0; j--) {
-				tags.push(things[i].tags[j]);
-			}
-		}
-		return tags;
-	}
-
-	function fetchThingsWithTags() {
+	function fetchThings() {
 		Things.repo.query(function (data) {
-			$scope.tags = fetchTags(data);
 			$scope.things = data;
 			if ($scope.selectedTags.length > 0) {
 				$scope.filteredThings = thingsFilter($scope.things, $scope.selectedTags);
 			} else {
 				$scope.filteredThings = data;
 			}
+		});
+	}
+
+	function fetchTags() {
+		api.userTagsDistinct().then(function (response) {
+			$scope.tags = response.data;
 		});
 	}
 

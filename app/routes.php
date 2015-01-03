@@ -30,12 +30,13 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'oauth'), function()
 	Route::resource('things', 'ThingsController');
 
 	Route::post('tags/search', 'TagsController@search');
+	Route::get('user/tags', 'TagsController@userTagsDistinct');
 	Route::post('things/search', 'ThingsController@search');
 	Route::get('auth/user', 'AuthController@getUserId');
 });
 
-// // Display all SQL executed in Eloquent
+// Display all SQL executed in Eloquent
 // Event::listen('illuminate.query', function($query)
 // {
-//     var_dump($query);
+// 	var_dump($query);
 // });
