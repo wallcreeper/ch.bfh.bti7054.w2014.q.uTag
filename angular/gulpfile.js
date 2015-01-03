@@ -18,7 +18,7 @@ var htmlminOpts = {
   collapseWhitespace: true,
   removeEmptyAttributes: false,
   collapseBooleanAttributes: true,
-  removeRedundantAttributes: true
+  // removeRedundantAttributes: true
 };
 
 /**
