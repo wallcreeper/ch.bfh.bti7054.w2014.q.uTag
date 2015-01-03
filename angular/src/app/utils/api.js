@@ -1,17 +1,21 @@
 /**
  * @ngdoc service
- * @name utag.utils:searcher
+ * @name utag.utils:api
  * @description
- * # searcher
+ * # api
  * Service in the utag app.
  */
 angular
 .module('utag.utils')
-.factory('searcher', function searcher($http, $log, API_PREFIX) {
+.factory('api', function api($http, $log, API_PREFIX) {
 	'use strict';
 
 	function searchTags(keywords) {
 		return $http.post(API_PREFIX + 'tags/search', { 'keywords' : keywords });
+	}
+
+	function userTagsDistinct() {
+		return $http.get(API_PREFIX + 'user/tags');
 	}
 
 	function searchThingsByTags(keywords) {
@@ -21,6 +25,7 @@ angular
 	return {
 
 		searchTags: searchTags,
+		userTagsDistinct: userTagsDistinct,
 		searchThingsByTags: searchThingsByTags,
 
 	};

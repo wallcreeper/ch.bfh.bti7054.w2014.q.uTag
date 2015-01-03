@@ -17,11 +17,10 @@ angular
     restrict: 'A',
     templateUrl: function(elem, attr) {
     	var type = attr.type ? '-'+attr.type : '';
-    	$log.info(type);
       return '/utag/things/thing'+type+'-directive.html';
     },
     link: function(scope, elem, attrs) {
-      $log.info('utag-thing directive');
+      // $log.info('utag-thing directive');
     }
   };
 });
