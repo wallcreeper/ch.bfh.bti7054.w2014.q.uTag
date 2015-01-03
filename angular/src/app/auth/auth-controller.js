@@ -75,6 +75,8 @@ angular
 		$scope.showLoginDialog();
 	});
 
+	$scope.logout = authSrvc.logout;
+
 })
 
 /**

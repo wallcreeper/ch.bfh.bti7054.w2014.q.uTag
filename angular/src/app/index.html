@@ -9,9 +9,28 @@
 	<!-- inject:vendor:css -->
 	<link rel="stylesheet" href="ngDialog/css/ngDialog.css">
 	<link rel="stylesheet" href="ngDialog/css/ngDialog-theme-plain.css">
-	<link rel="stylesheet" href="angular-xeditable/dist/css/xeditable.css">
-	<link rel="stylesheet" href="ng-tags-input/ng-tags-input.min.css">
 	<!-- endinject -->
+
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/favicons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/favicons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/favicons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/favicons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/favicons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon-180x180.png">
+	<link rel="shortcut icon" href="assets/favicons/favicon.ico">
+	<link rel="icon" type="image/png" href="assets/favicons/favicon-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="assets/favicons/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="assets/favicons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="assets/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="assets/favicons/favicon-32x32.png" sizes="32x32">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileImage" content="assets/favicons/mstile-144x144.png">
+	<meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+
+	
 	<!-- inject:css -->
 	<link rel="stylesheet" href="css/sass/draemmlib/main.css">
 	<link rel="stylesheet" href="css/sass/main.css">
@@ -28,7 +47,12 @@
 
 	<!-- Add your site or application content here -->
 	<div class="wrapper">
-	  <div class="header"></div>
+	  <div class="header">
+		<div id="user-menu" data-ng-controller="AuthCtrl">
+		   <button id="user-login" data-ng-click="login()">Login</button>
+		   <button id="user-logout" data-ng-click="logout()">Logout</button>
+		</div>
+	  </div>
 	  <div class="content" data-ng-view=""></div>
 	  <div class="footer"></div>
 	</div>
@@ -48,15 +72,13 @@
 	<script src="angular-http-auth/src/http-auth-interceptor.js"></script>
 	<script src="angular-cache/dist/angular-cache.min.js"></script>
 	<script src="ngDialog/js/ngDialog.js"></script>
-	<script src="angular-xeditable/dist/js/xeditable.js"></script>
-	<script src="ng-tags-input/ng-tags-input.min.js"></script>
 	<!-- endinject -->
 	<!-- inject:js -->
 	<script src="utils/color-cache.js"></script>
 	<script src="utils/utils.js"></script>
 	<script src="utils/transformer.js"></script>
-	<script src="utils/search.js"></script>
 	<script src="utils/color-hash.js"></script>
+	<script src="utils/api.js"></script>
 	<script src="things/things.js"></script>
 	<script src="things/things-service.js"></script>
 	<script src="things/things-directive.js"></script>
