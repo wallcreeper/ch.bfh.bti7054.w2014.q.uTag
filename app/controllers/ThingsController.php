@@ -95,44 +95,13 @@ class ThingsController extends \BaseController {
 
 		$searchTerms = $q; //explode(' ', $q);
 
-		// $query = DB::table('things');
-		// $user = User::find(Authorizer::getResourceOwnerId());
-		// $query = Thing::leftJoin('tags', function($q) use ($user)
-		// {
-		// 	$q->on('things.tag_id', '=', 'tags.id')
-		// 		->where('things.user_id', '=', $user->id);
-		// });
-
-		// $query = User::find(Authorizer::getResourceOwnerId())->things()->with('tags', 'thingable');
-
 		$query = User::find(Authorizer::getResourceOwnerId())->things()->where(function($query) use($searchTerms){
 			foreach($searchTerms as $term)
 			{
 				$query->orWhere('things.name', 'LIKE', '%'. $term .'%')
 							->orWhere('things.description', 'LIKE', '%'. $term .'%');
 			}
-		})->orWhere(function($query) use($searchTerms)
-		{
-			$query->with(array('tags' => function($query) use($searchTerms)
-			{
-				foreach($searchTerms as $term)
-				{
-					$query->orWhere('tags.name', 'LIKE', '%'. $term .'%');
-				}
-			}));
-		})->orWhere(function($query) use($searchTerms)
-		{
-			$query->with(array('thingable' => function($query) use($searchTerms)
-			{
-				foreach($searchTerms as $term)
-				{
-					$query->orWhere('thingable.uri', 'LIKE', '%'. $term .'%');
-				}
-			}));
 		});
-
-		// $queries = DB::getQueryLog();
-		// $last_query = end($queries);
 
 		$things = $query->with('tags', 'thingable')->get();
 		return Response::json($things, 200);

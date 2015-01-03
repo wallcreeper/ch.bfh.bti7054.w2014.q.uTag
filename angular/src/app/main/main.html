@@ -5,7 +5,7 @@
 							Tags
 						</h2>
 						<div class="inputContainer searchContainer">
-							<input data-ng-model="tagKeywords" data-ng-change="searchTags()" type="search" name="keywords" autofocus id="tagSearch" placeholder="Search Tags..." />
+							<input data-ng-model="tagKeywords" ng-model-options="{debounce:500}" data-ng-change="searchTags()" type="search" name="keywords" autofocus id="tagSearch" placeholder="Search Tags..." />
 						</div>
 				</div>
 				<div class="scrollContainer">
@@ -33,7 +33,7 @@
 							Things
 						</h2>
 						<div class="inputContainer searchContainer" ondragover="demoDragover(event)">
-							<input data-ng-model="thingKeywords" data-ng-change="searchThings()" type="text" autofocus id="thingSearch" placeholder="Search things..." />
+							<input data-ng-model="thingKeywords" ng-model-options="{debounce:500}" data-ng-change="searchThings()" type="text" autofocus id="thingSearch" placeholder="Search things..." />
 						</div>
 				</div>
 				<div class="scrollContainer">
