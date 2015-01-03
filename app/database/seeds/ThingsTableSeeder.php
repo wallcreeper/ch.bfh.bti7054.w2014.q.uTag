@@ -19,12 +19,15 @@ class ThingsTableSeeder extends Seeder {
 
 			$tags = $user->tags;
 			$tagCount = $tags->count();
+			$thingCount = rand(6,15);
+			// chance to associate tag to thing
+			$associateChance = 40;
 
-			echo 'seeding user: '.$user->username.'
+			echo 'seeding user: '.$user->username.' with '.$thingCount.' things
 ';
 
-			//for each user add 6-12 things
-			foreach(range(1, rand(6,12)) as $index)
+			//for each user add things
+			foreach(range(1, $thingCount) as $index)
 			{
 
 				$faker = Faker::create();
@@ -36,14 +39,31 @@ class ThingsTableSeeder extends Seeder {
 
 				$user->things()->save($thing);
 
+				$tags = $user->tags()->get();
 				$tagsAr = array();
-				foreach(range(1,rand(1,$tagCount)) as $tagIndex) {
 
-					array_push($tagsAr, rand(1,$tagCount)); 
-
-					//$thing->tags()->attach($tags->random(1));
+				// generate array of random tag IDs
+				foreach ($tags as $tag) {
+					if($tag->counter == 0) {
+						array_push($tagsAr, $tag->id);
+					} else {
+						if (rand(1,100)<$associateChance) {
+							array_push($tagsAr, $tag->id);
+						}
+					}
 				}
+
+				// avoid redundant entries
 				$tagsAr = array_unique($tagsAr);
+
+				// increase counter of tags
+				foreach ($tagsAr as $tagId) {
+					$tagToIncrease = Tag::find($tagId);
+					$tagToIncrease->counter = $tagToIncrease->counter + 1;
+					$tagToIncrease->save();
+				}
+
+				// link tags to things				
 				$thing->tags()->sync($tagsAr);
 			}
 

@@ -7,6 +7,8 @@ class TagsTableSeeder extends Seeder {
 
 	public function run()
 	{
+		echo 'TagsTableSeeder:
+';
 		$faker = Faker::create();
 
 		$userCount =  DB::table('users')->count();
@@ -15,6 +17,11 @@ class TagsTableSeeder extends Seeder {
 		foreach(range(1, $userCount) as $userIndex) {
 			$user = User::find($userIndex);
 
+			$tagsCount = rand(10,50);
+
+			echo 'seeding: '.$user->username.' with '.$tagsCount.' tags
+';
+
 			$tag = Tag::create([
 				'name' 		=> 'Rainbow',
 				'counter' 	=> '0'		
@@ -22,15 +29,30 @@ class TagsTableSeeder extends Seeder {
 
 			$user->tags()->save($tag);
 
-			// for each user add 10 - 41 tags
-			foreach(range(1, rand(10,41)) as $index)
+			// for each user add tags
+			foreach(range(1, $tagsCount) as $index)
 			{
-				$tag = Tag::create([
-					'name' 		=> $faker->word,
-					'counter' 	=> '0'
-				]);
+				$name =  $faker->word;
 
-				$user->tags()->save($tag);
+				$tagDoesNotExist = 0;
+
+				// check if tag is alreay available
+				foreach ($user->tags()->get() as $oneTag) {
+					if (strcmp($oneTag->name,$name)==0) {
+						$tagDoesNotExist = 1;
+						break;
+					}
+				}
+
+				// create the tag because not yet available
+				if ($tagDoesNotExist == 0) {
+					$tag = Tag::create([
+						'name' 		=> $name,
+						'counter' 	=> '0'
+					]);
+
+					$user->tags()->save($tag);
+			   }
 			}
 		}
 	}
