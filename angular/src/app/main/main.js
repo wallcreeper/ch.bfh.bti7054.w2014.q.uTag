@@ -1,1 +1,5 @@
-angular.module('utag.main', ['utag.main.controller']);
+angular
+.module('utag.main', [
+	'utag.main.controller',
+	'utag.main.service',
+]);

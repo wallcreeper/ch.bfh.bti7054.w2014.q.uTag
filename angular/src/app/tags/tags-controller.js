@@ -11,11 +11,11 @@ angular
  * # TagsBaseCtrl
  * Controller of the utag app
  */
-.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $log, colorCache) {
+.controller('TagsBaseCtrl', function TagsBaseCtrl ($scope, $location) {
 	'use strict';
 
-	$scope.color = function color(tag, alpha) {
-		return colorCache.get(tag.name, alpha).rgba;
+	$scope.showTagDetailView = function showTagsDetailView(id) {
+		$location.path('/tags/'+ id + '/view');
 	};
 
 })
@@ -27,23 +27,24 @@ angular
  * # TagsCtrl
  * Controller of the utag app
  */
-.controller('TagsCtrl', function TagsCtrl ($scope, $log, $controller, $location, Tags) {
+.controller('TagsCtrl', function TagsCtrl ($scope, $controller, Tags) {
 	'use strict';
 
+	// extend TagsCtrl
 	$controller('TagsBaseCtrl', { $scope: $scope });
 
-	if (!$scope.tags) {
-		$scope.tags = Tags.repo.query(function(data, responseHeaders) {
-			// $log.info(data);
-			// $log.info(responseHeaders);
-		}, function(httpResponse) {
-			// $log.info(httpResponse);
-		});
-	}
+	$scope.title = 'Tags';
+	$scope.tags = $scope.tags || [];
 
-	$scope.showDetailView = function showDetailView(id) {
-		$location.path('/tags/'+ id + '/view');
-	};
+	activate();
+
+	function activate() {
+		if ($scope.tags.length === 0) {
+			Tags.repo.query(function(data) {
+				$scope.tags = data;
+			});
+		}
+	}
 
 })
 
@@ -54,18 +55,23 @@ angular
  * # TagsDetailCtrl
  * Controller of the utag app
  */
-.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, $log, $controller, $routeParams, Tags) {
+.controller('TagsDetailCtrl', function TagsDetailCtrl ($scope, $controller, $routeParams, Tags) {
 	'use strict';
 
+	// extend TagsCtrl
 	$controller('TagsBaseCtrl', { $scope: $scope });
 
-	if (!$scope.tag) {
-		$scope.tag = Tags.repo.get({id: $routeParams.id}, function(data, responseHeaders) {
-			// $log.info(data);
-			// $log.info(responseHeaders);
-		}, function(httpResponse) {
-			// $log.info(httpResponse);
-		});
+	$scope.title = 'TagDetail';
+	$scope.tag = $scope.tag || {};
+
+	activate();
+
+	function activate() {
+		if ($routeParams.id) {
+			Tags.repo.get({id: $routeParams.id}, function(data) {
+					$scope.tag = data;
+			});
+		}
 	}
 
 });

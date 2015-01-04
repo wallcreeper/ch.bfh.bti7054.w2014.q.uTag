@@ -17,7 +17,7 @@ angular
 .service('Things', function($resource, DSCacheFactory, API_PREFIX) {
 	'use strict';
 
-	var cache = DSCacheFactory('ThingsCache', {
+	var cache = new DSCacheFactory('thingsCache', {
 
 		// This cache can hold 1000 items
 		capacity: 1000,
@@ -59,8 +59,11 @@ angular
 	});
 
 	var repo = $resource(API_PREFIX + 'things/:id', {id: '@id'}, {
-		'get': { method: 'GET', cache: cache },
-		'query': { method: 'GET', cache: cache, isArray: true }
+		'get': { method: 'GET', cache: false },
+		'query': { method: 'GET', cache: false, isArray: true },
+		'update': { method: 'PUT', chache: false },
+    'delete': { method: 'DELETE', cache: false},
+    'save': { method: 'POST', cache: false}
 
 		/**
 		 * Compute color hash, when receiving response from server.

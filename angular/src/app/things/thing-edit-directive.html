@@ -1,0 +1,15 @@
+Title: <span data-editable-text="thing.name">{{thing.name || "empty"}}</span>
+<hr />
+<!-- Here further thingable-types have to be implemented if there will be any further -->
+Link: <span  data-editable-text="thing.thingable.uri">{{thing.thingable.uri || "empty"}}</span>
+<hr />
+Description: <span data-editable-text="thing.description">{{thing.description || "empty"}}</span>
+<hr />
+Tags:
+<tags-input data-display-property="name" data-ng-model="thing.tags">
+<auto-complete source="searchTags($query)"></auto-complete>
+</tags-input>
+<hr />
+<span class="form-message" data-ng-repeat="message in messages"><br />{{message}}</span>
+<button data-ng-click="saveThing(thing)">Save Thing</button>
+<button data-ng-click="showDeleteDialog(thing)">Delete this Thing</button>

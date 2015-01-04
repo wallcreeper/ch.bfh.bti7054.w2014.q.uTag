@@ -18,7 +18,7 @@ angular
 .factory('Tags', function($resource, DSCacheFactory, API_PREFIX) {
 	'use strict';
 
-	var cache = DSCacheFactory('TagsCache', {
+	var cache = new DSCacheFactory('tagsCache', {
 
 		// This cache can hold 1000 items
 		capacity: 1000,
@@ -60,8 +60,8 @@ angular
 	});
 
 	var repo = $resource(API_PREFIX + 'tags/:id', {id: '@id'}, {
-		'get': { method: 'GET', cache: cache },
-		'query': { method: 'GET', cache: cache, isArray: true }
+		'get': { method: 'GET', cache: false },
+		'query': { method: 'GET', cache: false, isArray: true }
 
 		/**
 		 * Compute color hash, when receiving response from server.

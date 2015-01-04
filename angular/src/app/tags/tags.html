@@ -1,38 +1,23 @@
-  	<div ng-controller="TagsCtrl" id="tags">
-      <div id="tagsHeader" class="sectionHeader">
-          <h2 class="sectionTitle">
-              Tags
-          </h2>
-          <div class="inputContainer searchContainer">
-              <input type="text" autofocus id="tagSearch" placeholder="Search Tags..." />
-          </div>
-      </div>
-			<div class="scrollContainer">
-				<!-- <div class="tag" style="background-color: rgba(255, 128, 0, 0.15);" draggable="true"><div></div>
-					Ants
-				</div>
-				<div class="tag" style="background-color: rgba(0, 128, 255, 0.15);" draggable="true"><div></div>
-					Development
-				</div>
-				<div class="tag" style="background-color: rgba(0, 0, 255, 0.15);" draggable="true"><div></div>
-					HTML5
-				</div>
-				<div class="tag" style="background-color: rgba(128, 255, 0, 0.15);" draggable="true"><div></div>
-					Science
-				</div>
-				<div class="tag" style="background-color: rgba(255, 255, 0, 0.15);" draggable="true"><div></div>
-					MDN
-				</div>
-				<div class="tag" style="background-color: rgba(255, 0, 255, 0.15);" draggable="true"><div></div>
-					Github Repositories
-				</div>
-				<div class="tag" style="background-color: rgba(0, 255, 255, 0.15);" draggable="true"><div></div>
-					This tag is like waaay too long and it won't fit on the left side
-				</div> -->
-
-				<div data-ng-repeat="tag in tags | orderBy:'name'" class="tag" style="background-color: {{color(tag)}};" ng-click="showDetailView(tag.id)" draggable="true">
-					<div></div>
-					{{tag.name}}
-				</div>
-			</div>
-    </div>
+<!-- <div class="tag" style="background-color: rgba(255, 128, 0, 0.15);" draggable="true"><div></div>
+	Ants
+</div>
+<div class="tag" style="background-color: rgba(0, 128, 255, 0.15);" draggable="true"><div></div>
+	Development
+</div>
+<div class="tag" style="background-color: rgba(0, 0, 255, 0.15);" draggable="true"><div></div>
+	HTML5
+</div>
+<div class="tag" style="background-color: rgba(128, 255, 0, 0.15);" draggable="true"><div></div>
+	Science
+</div>
+<div class="tag" style="background-color: rgba(255, 255, 0, 0.15);" draggable="true"><div></div>
+	MDN
+</div>
+<div class="tag" style="background-color: rgba(255, 0, 255, 0.15);" draggable="true"><div></div>
+	Github Repositories
+</div>
+<div class="tag" style="background-color: rgba(0, 255, 255, 0.15);" draggable="true"><div></div>
+	This tag is like waaay too long and it won't fit on the left side
+</div> -->
+<div data-ng-repeat="tag in tags | orderBy:'name'" data-ng-click="showTagDetailView(tag.id)" data-ng-include="'/utag/tags/tag.html'">
+</div>

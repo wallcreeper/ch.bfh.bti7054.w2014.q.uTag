@@ -30,3 +30,18 @@ input {
 	border: none;
 	width: 100%;
 }
+
+.form-message {
+	display: block;
+	margin: 6px 0px 10px 0px;
+	line-height: 5px;
+	font-size: 19px;
+    -webkit-animation: form-message-animated 3s ease forwards;
+}
+.form-message-animated {
+    color: #FF5500;
+}
+@-webkit-keyframes form-message-animated {
+    from { color: #FF5500; }
+    to { color: #000000; }
+}

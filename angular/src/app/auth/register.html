@@ -1,16 +1,25 @@
-<div id="loginDialog" ng-controller="AuthRegisterCtrl">
+<div id="registerDialog">
+	<h2>Register a new account</h2>
 	<span>{{ message }}</span>
-	<form ng-submit="submit(user)">
-		<input ng-model="user.username" type="text" name="username" placeholder="Username" />
-		<input ng-model="user.email" type="text" name="email" placeholder="Email" />
-		<input ng-model="user.password" type="password" name="password" placeholder="Password" />
-		<input type="submit" value="Register" />
-	</form>
+	<div class="register-formContainer">
+		<form data-ng-submit="register(user)">
+			<div data-ng-show="error" class="errorContainer">
+				<ul class="errors">
+					<li data-ng-repeat="error in errors">{{error}}</li>
+				</ul>
+			</div>
+			<input data-ng-model="user.username" data-ng-required="true" type="text" name="username" placeholder="Username" />
+			<input data-ng-model="user.email" data-ng-required="true" type="text" name="email" placeholder="Email" />
+			<input data-ng-model="user.password" data-ng-required="true" type="password" name="password" placeholder="Password" />
+			<input data-ng-model="user.passwordConfirm" data-ng-required="true" type="password" name="passwordConfirm" placeholder="Password Confirm" />
+			<input type="submit" value="Register" />
+		</form>
+	</div>
 </div>
 
-<ul>
+<!--ul>
 	<li>Access Token: {{ $storage.access_token }}</li>
 	<li>Access Type: {{ $storage.token_type }}</li>
 	<li>Expires in: {{ $storage.expires_in }}s</li>
 	<li>Expires: {{ $storage.expires }}</li>
-</ul>
+</ul-->

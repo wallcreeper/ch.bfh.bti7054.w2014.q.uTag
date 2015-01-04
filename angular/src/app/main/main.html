@@ -1,2 +1,42 @@
-<div data-ng-include="'/utag/tags/tags.html'"></div>
-<div data-ng-include="'/utag/things/things.html'"></div>
+		<div id="siteMain">
+			<div id="tags">
+				<div id="tagsHeader" class="sectionHeader">
+						<h2 class="sectionTitle">
+							Tags
+						</h2>
+						<div class="inputContainer searchContainer">
+							<input data-ng-model="tagKeywords" ng-model-options="{debounce:500}" data-ng-change="searchTags()" type="search" name="keywords" autofocus id="tagSearch" placeholder="Search Tags..." />
+						</div>
+				</div>
+				<div class="scrollContainer">
+					<div class="pool poolSearchTags">
+						<div data-ng-repeat="tag in tags | orderBy:'name'">
+							<div title="Click to add to filter" data-utag-tag data-tag="tag" data-ng-click="selectTag(tag)" class="tag" draggable="true"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="things">
+				<div id="thingsHeader" class="sectionHeader">
+					<h2 class="sectionTitle">
+						Things <button id="createNewThingButton" data-ng-controller="ThingsDetailCtrl" data-ng-click="showCreateDialog()">Create new</button>
+					</h2>
+					<div id="things-toolbar">
+						<div class="inputContainer searchContainer" ondragover="demoDragover(event)">
+							<input data-ng-model="thingKeywords" ng-model-options="{debounce:500}" data-ng-change="searchThings()" type="text" autofocus id="thingSearch" placeholder="Search things..." />
+						</div>
+						<button data-ng-show="selectedTags.length > 0" id="things-clearFilterButton" data-ng-click="clearSelectedTags()">Clear tag filter</button>
+						<div data-ng-show="selectedTags.length > 0" class="pool poolFilterTags">
+								<div class="tagContainer" data-ng-repeat="tag in selectedTags | orderBy:'name' track by tag.id">
+									<div data-utag-tag data-tag="tag" data-ng-click="deselectTag(tag)" class="tag" draggable="true"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="scrollContainer">
+					<!--  | filter:thingsFilter:things:filteredTags -->
+					<div data-ng-repeat="thing in filteredThings | orderBy:'name'" data-ng-include="'/utag/things/thing.html'"></div>
+				</div>
+			</div>
+		</div>

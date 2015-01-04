@@ -7,8 +7,13 @@ class ThingUrisTableSeeder extends Seeder {
 
 	public function run()
 	{
+		echo 'ThingsUrisTableSeeder:
+';
 		$faker = Faker::create();
 		$thingCount = DB::table('things')->count();
+
+		echo 'seeding '.$thingCount.' Uris
+';
 
 		foreach(range(1, $thingCount) as $index)
 		{

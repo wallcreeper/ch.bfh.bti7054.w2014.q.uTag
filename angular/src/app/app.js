@@ -10,6 +10,8 @@ angular
 .module('utag', [
 	'ngRoute',
 	'ngDialog',
+	'xeditable',
+	'ngTagsInput',
 	'utag.config',
 	'utag.utils',
 	'utag.auth',
@@ -24,7 +26,15 @@ angular
 		.when('/', {
 			templateUrl: '/utag/main/main.html',
 			controller: 'MainCtrl',
-			controllerAs: 'ctrl'
+			controllerAs: 'ac',
+			// resolve: {
+			// 	'tags': function (Tags) {
+			// 		return Tags.repo.query();
+			// 	},
+			// 	'things': function (Things) {
+			// 		return Things.repo.query();
+			// 	}
+			// }
 		})
 		// .when('/auth/login', {
 		// 	templateUrl: '/utag/auth/login.html',
@@ -41,9 +51,9 @@ angular
 			controller: 'TagsCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			//   'promise': function (Tags) {
-			//     return Tags.query();
-			//   }
+			// 	'tags': function (Tags) {
+			// 		return Tags.repo.query();
+			// 	}
 			// }
 		})
 		.when('/tags/:id/view', {
@@ -51,8 +61,8 @@ angular
 			controller: 'TagsDetailCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			// 	tag: function($routeParams, Tags) {
-			// 		return Tags.repo.get({id: $routeParams.id});
+			// 	tag: function($route, Tags) {
+			// 		return Tags.repo.get({id: $route.current.params.id});
 			// 	}
 			// }
 		})
@@ -61,22 +71,33 @@ angular
 			controller: 'ThingsCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			//   'promise': function (Things) {
-			//     return Things.query();
+			//   'things': function (Things) {
+			//     return Things.repo.query();
 			//   }
 			// }
 		})
 		.when('/things/:id/view', {
-			templateUrl: '/utag/things/thing.html',
+			templateUrl: '/utag/things/thing-edit.html',
 			controller: 'ThingsDetailCtrl',
 			controllerAs: 'ctrl',
 			// resolve: {
-			// 	thing: function($routeParams, Things) {
-			// 		return Things.repo.get({id: $routeParams.id});
+			// 	thing: function($route, Things) {
+			// 		return Things.repo.get({id: $route.current.params.id});
 			// 	}
 			// }
 		})
-		.otherwise({
-			redirectTo: '/'
+    .when('/things/create', {
+      templateUrl: '/utag/things/thing-create.html',
+      controller: 'ThingsCreateCtrl',
+      controllerAs: 'ctrl',
+      // resolve: {
+      //  thing: function($route, Things) {
+      //    return Things.repo.get({id: $route.current.params.id});
+      //  }
+      // }
+
 		});
+})
+.run(function(editableOptions) {
+	editableOptions.theme = 'default';
 });

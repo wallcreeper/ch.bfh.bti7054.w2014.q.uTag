@@ -17,11 +17,11 @@ angular
 
 		// Append the new transformation to the defaults
 		return defaults.concat(transform);
-	};
+	}
 
 	function transformTags(data) {
 
-		tags = angular.isArray(data) ? data : [data];
+		var tags = angular.isArray(data) ? data : [data];
 
 		try {
 			for (var i = 0; i < tags.length; i++) {
@@ -45,11 +45,11 @@ angular
 		}
 
 		return data;
-	};
+	}
 
 	function transformThings(data) {
 
-		things = angular.isArray(data) ? data : [data];
+		var things = angular.isArray(data) ? data : [data];
 
 		try {
 			for (var i = 0; i < things.length; i++) {
@@ -64,7 +64,7 @@ angular
 		}
 
 		return data;
-	};
+	}
 
 	return {
 
