@@ -27,7 +27,7 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-	cursor: default;
+	cursor: pointer;
 
 	&:hover {
 		border-color: rgba(0, 0, 0, 0.8);

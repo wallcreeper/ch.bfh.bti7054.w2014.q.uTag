@@ -89,8 +89,10 @@
 	.poolFilterTags{
 		float: left;
 		max-width: 70%;
-		overflow-x: auto;
+		overflow: hidden;
 		height: 30px;
+		margin-left: 1%;
+		border: 1px #EEEEEE dashed;
 	}
 
 	#things-clearFilterButton{
