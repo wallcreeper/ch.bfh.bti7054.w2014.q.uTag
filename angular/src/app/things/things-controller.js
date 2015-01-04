@@ -83,9 +83,9 @@ angular
 
   //$scope.dialogShown = false;
   $scope.showDeleteDialog = function showLoginDialog(thing) {
-    //Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtDelete")});
+    Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtDelete")});
 
-    if (!$scope.dialogShown) {
+   /* if (!$scope.dialogShown) {
       var dialog = ngDialog.open({
         templateUrl: '/utag/things/thing-delete.html',
         controller: 'ThingsDetailCtrl',
@@ -101,7 +101,7 @@ angular
         }
         // $log.info(data.id + ' has been dismissed.');
       });
-    }
+    }*/
 
     $scope.yesDelete = function yesDelete(thing) {
       Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
@@ -147,7 +147,7 @@ angular
   }
 
   $scope.saveThing = function saveThing(thing) {
-    Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtUpdate")});
+    Things.repo.save({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtUpdate")});
   };
 
   $scope.cancel = function cancel() {

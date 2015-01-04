@@ -1819,12 +1819,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d82603adc7aa0f7d47c2e767fd33636803f4117a"
+                "reference": "293b16ef75e09d511ca4ab131e7fa4c093534e6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d82603adc7aa0f7d47c2e767fd33636803f4117a",
-                "reference": "d82603adc7aa0f7d47c2e767fd33636803f4117a",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/293b16ef75e09d511ca4ab131e7fa4c093534e6b",
+                "reference": "293b16ef75e09d511ca4ab131e7fa4c093534e6b",
                 "shasum": ""
             },
             "require": {
@@ -1833,6 +1833,9 @@
             "require-dev": {
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
+            },
+            "suggest": {
+                "ext-intl": "*"
             },
             "type": "library",
             "extra": {
@@ -1860,7 +1863,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2014-12-18 07:45:28"
+            "time": "2015-01-02 23:06:12"
         },
         {
             "name": "way/generators",
@@ -1917,7 +1920,6 @@
         "fzaninotto/faker": 20
     },
     "prefer-stable": false,
-    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }
