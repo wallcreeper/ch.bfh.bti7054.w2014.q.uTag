@@ -64,5 +64,11 @@ h2.sectionTitle {
 	margin-bottom: -50px; /* otherwise it would push stuff down */
 }
 
+.ngdialog.ngdialog-theme-plain{
+	padding-top: 75px;
+}
 
+.ngdialog.ngdialog-theme-plain .ngdialog-content {
+	width: 60%;
+}
 
