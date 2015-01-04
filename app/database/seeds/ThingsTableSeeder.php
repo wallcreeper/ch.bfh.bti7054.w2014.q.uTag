@@ -19,11 +19,12 @@ class ThingsTableSeeder extends Seeder {
 
 			$tags = $user->tags;
 			$tagCount = $tags->count();
-			$thingCount = rand(6,15);
+			$thingCount = rand(5,10);
 			// chance to associate tag to thing
 			$associateChance = 40;
 
-			echo 'seeding user: '.$user->username.' with '.$thingCount.' things';
+			echo 'seeding user: '.$user->username.' with '.$thingCount.' things
+';
 
 			//for each user add things
 			foreach(range(1, $thingCount) as $index)

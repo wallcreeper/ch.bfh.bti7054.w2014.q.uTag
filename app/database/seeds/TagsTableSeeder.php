@@ -17,7 +17,7 @@ class TagsTableSeeder extends Seeder {
 		foreach(range(1, $userCount) as $userIndex) {
 			$user = User::find($userIndex);
 
-			$tagsCount = rand(10,50);
+			$tagsCount = rand(8,30);
 
 			echo 'seeding: '.$user->username.' with '.$tagsCount.' tags
 ';

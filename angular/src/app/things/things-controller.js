@@ -147,7 +147,7 @@ angular
   }
 
   $scope.saveThing = function saveThing(thing) {
-    Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtUpdate")});
+    Things.repo.save({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtUpdate")});
   };
 
   $scope.cancel = function cancel() {
