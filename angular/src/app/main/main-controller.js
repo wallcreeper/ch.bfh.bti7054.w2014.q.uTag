@@ -47,6 +47,10 @@ angular
 		$scope.selectedTags = [];
 	};
 
+	$scope.clearFilteredThings = function() {
+		$scope.filteredThings = [];
+	};
+
 	$scope.$watchCollection('selectedTags', function (newVal, oldVal) {
 		// $log.info('watchCollection');
 		// $log.info(newVal, oldVal);

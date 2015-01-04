@@ -135,21 +135,28 @@ angular
 	$scope.message = '';
 
 	$scope.register = function(user) {
-		$scope.error = false;
-		authSrvc.register(user, function(data) {
-			$scope.closeThisDialog();
-			ngDialog.close('login');
-			// $log.info($scope);
-			// $log.info(data);
-		}, function(data) {
-			$scope.error = true;
-			$scope.message = data.error_description;
+		if (user.password === user.passwordConfirm) {
 
-			if (data.errors) {
-				$scope.errors = data.errors;
-			}
-			// $log.info(data);
-		});
+			$scope.error = false;
+			authSrvc.register(user, function(data) {
+				$scope.closeThisDialog();
+				ngDialog.close('login');
+				// $log.info($scope);
+				// $log.info(data);
+			}, function(data) {
+				$scope.error = true;
+				$scope.message = data.error_description;
+
+				if (data.errors) {
+					$scope.errors = data.errors;
+				}
+				// $log.info(data);
+			});
+
+		} else {
+			$scope.error = true;
+			$scope.message = "Passwords don't match";
+		}
 	};
 
 });

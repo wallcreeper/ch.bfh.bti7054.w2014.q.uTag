@@ -17,7 +17,7 @@ angular
 	$controller('TagsBaseCtrl', { $scope: $scope });
 
 	$scope.showThingDetailView = function showThingsDetailView(id) {
-		console.log("$scope.showThingDetailView")
+		// console.log("$scope.showThingDetailView")
 		$location.path('/things/'+ id + '/view');
 	};
 
@@ -80,7 +80,7 @@ angular
 	$scope.saveThing = function saveThing(thing) {
 		Things.repo.update({id: thing.id}, thing, function(data) {$location.path('/');}, function(data) {
 			$scope.messages = data.data.errors;
-			console.log("failAtUpdate");
+			// console.log("failAtUpdate");
 		});
 	};
 
@@ -119,7 +119,7 @@ angular
 				$scope.dialogShown = false;
 				// refresh tags
 				$scope.$parent.fetchTags();
-				$log.info(data.id + ' has been dismissed.');
+				// $log.info(data.id + ' has been dismissed.');
 			});
 		}
 	}
@@ -138,10 +138,10 @@ angular
 			plain: true,
 			scope: $scope,
 		}).then(function (value) {
-			$log.info('Modal promise resolved. Value: ', value);
+			// $log.info('Modal promise resolved. Value: ', value);
 			Things.repo.delete({id: thing.id}, thing, function(data) {$location.path('/');}, function(data) {
 				$scope.messages = data.data.errors;
-				$log.info("failAtDelete");
+				// $log.info("failAtDelete");
 			});
 
 			// remove deleted things
@@ -157,7 +157,7 @@ angular
 
 			ngDialog.close('detail');
 		}, function (reason) {
-			$log.info('Modal promise rejected. Reason: ', reason);
+			// $log.info('Modal promise rejected. Reason: ', reason);
 		});
 
 		return true;
@@ -206,7 +206,7 @@ angular
 			$location.path('/');
 		}, function(data) {
 			$scope.messages = data.data.errors;
-			console.log("failAtUpdate");
+			// console.log("failAtUpdate");
 		});
 	};
 

@@ -14,7 +14,6 @@ angular
 		hash: function(inputString, alpha) {
 			inputString = inputString.trim();
 			inputString = inputString.split('');
-			console.log(inputString, alpha);
 			var r = 0;
 			var g = 0;
 			var b = 0;
