@@ -121,27 +121,8 @@ angular
 		$location.path('/');
 	};
 
-  //$scope.dialogShown = false;
   $scope.showDeleteDialog = function showDeleteDialog(thing) {
   Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtDelete")});
-
-   /* if (!$scope.dialogShown) {
-      var dialog = ngDialog.open({
-        templateUrl: '/utag/things/thing-delete.html',
-        controller: 'ThingsDetailCtrl',
-        className: 'ngdialog-theme-plain',
-        scope: $scope,
-      });
-      $scope.dialogShown = true;
-
-      dialog.closePromise.then(function (data) {
-        $scope.dialogShown = false;
-        if (data == '1') {
-          Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
-        }
-        // $log.info(data.id + ' has been dismissed.');
-      });
-    }*/
 
     $scope.yesDelete = function yesDelete(thing) {
       Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
