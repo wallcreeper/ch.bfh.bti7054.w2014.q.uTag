@@ -9,7 +9,7 @@ angular
 .module('utag.utils', [
 	'angular-data.DSCacheFactory',
 ])
-.factory('colorCache', function colorCache($log, DSCacheFactory, colorHash) {
+.factory('colorCache', function colorCache(DSCacheFactory, colorHash) {
 	'use strict';
 
 	var cache = new DSCacheFactory('colorCache', {
@@ -58,8 +58,6 @@ angular
 	}
 
 	function put(string, alpha) {
-		$log.info('colorCache put', string);
-
 		string = angular.isString(string) ? string : '';
 		alpha = angular.isNumber(alpha) ? alpha : parseFloat(alpha) || 0.30;
 

@@ -26,13 +26,14 @@ class AuthController extends \BaseController {
 
 		if ($validator->fails())
 		{
-			error_log("Foo");
 			return Response::json([
+				'error' => 'validation',
+				'error_description' => 'Validation error',
 				'errors' => $validator->messages()->all(),
-			], 200);
+			], 400);
 		}
-		error_log("Bar");
-		$user = Tag::create($data);
+
+		$user = User::create($data);
 
 		return $this->login();
 	}

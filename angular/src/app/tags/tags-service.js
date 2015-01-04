@@ -18,7 +18,7 @@ angular
 .factory('Tags', function($resource, DSCacheFactory, API_PREFIX) {
 	'use strict';
 
-	var cache = new DSCacheFactory('TagsCache', {
+	var cache = new DSCacheFactory('tagsCache', {
 
 		// This cache can hold 1000 items
 		capacity: 1000,
