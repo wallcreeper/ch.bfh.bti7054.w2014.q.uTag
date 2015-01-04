@@ -17,6 +17,7 @@ angular
 	$controller('TagsBaseCtrl', { $scope: $scope });
 
 	$scope.showThingDetailView = function showThingsDetailView(id) {
+    console.log("$scope.showThingDetailView")
 		$location.path('/things/'+ id + '/view');
 	};
 
@@ -57,7 +58,7 @@ angular
  * # ThingsDetailCtrl
  * Controller of the utag app
  */
-.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, $location, api, Tags, Things) {
+.controller('ThingsDetailCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, $location, ngDialog, api, Tags, Things) {
 	'use strict';
 
 	// extend ThingsCtrl
@@ -73,12 +74,54 @@ angular
   }
 
   $scope.saveThing = function saveThing(thing) {
-		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
+		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+      console.log("failAtUpdate");
+    });
 	};
 
 	$scope.cancel = function cancel() {
 		$location.path('/');
 	};
+
+  //$scope.dialogShown = false;
+  $scope.showDeleteDialog = function showDeleteDialog(thing) {
+    Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+      console.log("failAtDelete");
+    });
+
+   /* if (!$scope.dialogShown) {
+      var dialog = ngDialog.open({
+        templateUrl: '/utag/things/thing-delete.html',
+        controller: 'ThingsDetailCtrl',
+        className: 'ngdialog-theme-plain',
+        scope: $scope,
+      });
+      $scope.dialogShown = true;
+
+      dialog.closePromise.then(function (data) {
+        $scope.dialogShown = false;
+        if (data == '1') {
+          Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
+        }
+        // $log.info(data.id + ' has been dismissed.');
+      });
+    }*/
+
+    $scope.yesDelete = function yesDelete(thing) {
+      Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+        $scope.messages = data.data.errors;
+        console.log("failAtyesDelete");
+      });
+    }
+
+    $scope.noDelete = function noDelete() {
+      $scope.dialogShown = false;
+    }
+
+
+  }
 
   activate();
 
@@ -93,4 +136,42 @@ angular
 		}
 	}
 
+})
+
+
+.controller('ThingsCreateCtrl', function ThingsDetailCtrl ($scope, $log, $controller, $routeParams, $location, ngDialog, api, Tags, Things) {
+  'use strict';
+
+  // extend ThingsCtrl
+  $controller('ThingsBaseCtrl', { $scope: $scope });
+
+  $scope.title = 'ThingDetail';
+  $scope.thing = {name: '', description: '', tags: [], thingable: {id: '', uri: ''}};
+  $scope.tags = $scope.tags || [];
+
+
+  $scope.searchTags = function searchTags(keywords) {
+    keywords = keywords ? keywords.split(' ') : [];
+    return api.searchTags(keywords);
+  }
+
+  $scope.createThing = function createThing(thing) {
+    Things.repo.save({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+    });
+  };
+
+  $scope.cancel = function cancel() {
+    $location.path('/');
+  };
+
+  activate();
+
+  function activate() {
+    if ($scope.tags.length === 0) {
+      $scope.tags = api.userTagsDistinct();
+    }
+  }
+
 });
+

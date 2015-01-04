@@ -19,7 +19,7 @@ class ThingsTableSeeder extends Seeder {
 
 			$tags = $user->tags;
 			$tagCount = $tags->count();
-			$thingCount = rand(6,15);
+			$thingCount = rand(5,10);
 			// chance to associate tag to thing
 			$associateChance = 40;
 
@@ -59,7 +59,8 @@ class ThingsTableSeeder extends Seeder {
 				// increase counter of tags
 				foreach ($tagsAr as $tagId) {
 					$tagToIncrease = Tag::find($tagId);
-					$tagToIncrease->counter = $tagToIncrease->counter + 1;
+					$oldCounter = $tagToIncrease->counter;
+					$tagToIncrease->counter = $oldCounter + 1;
 					$tagToIncrease->save();
 				}
 

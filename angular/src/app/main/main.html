@@ -9,16 +9,6 @@
 						</div>
 				</div>
 				<div class="scrollContainer">
-					<h3>Filter Tags</h3>
-					<span><button data-ng-click="clearSelectedTags()">Clear</button></span>
-					<div class="pool poolFilterTags">
-						<div data-ng-repeat="tag in selectedTags | orderBy:'name' track by tag.id">
-							<div data-utag-tag data-tag="tag" data-ng-click="deselectTag(tag)" class="tag" draggable="true"></div>
-						</div>
-					</div>
-				</div>
-				<div class="scrollContainer">
-					<h3>Search Tags</h3>
 					<div class="pool poolSearchTags">
 						<div data-ng-repeat="tag in tags | orderBy:'name'">
 							<div data-utag-tag data-tag="tag" data-ng-click="selectTag(tag)" class="tag" draggable="true"></div>
@@ -29,13 +19,21 @@
 
 			<div id="things">
 				<div id="thingsHeader" class="sectionHeader">
-						<h2 class="sectionTitle">
-							Things
-						</h2>
+					<h2 class="sectionTitle">
+						Things
+					</h2>
+					<div id="things-toolbar">
 						<div class="inputContainer searchContainer" ondragover="demoDragover(event)">
 							<input data-ng-model="thingKeywords" ng-model-options="{debounce:500}" data-ng-change="searchThings()" type="text" autofocus id="thingSearch" placeholder="Search things..." />
 						</div>
-				</div>
+						<button id="things-clearFilterButton" data-ng-click="clearSelectedTags()">Clear tag filter</button>
+						<div class="pool poolFilterTags">
+								<div class="tagContainer" data-ng-repeat="tag in selectedTags | orderBy:'name' track by tag.id">
+									<div data-utag-tag data-tag="tag" data-ng-click="deselectTag(tag)" class="tag" draggable="true"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 				<div class="scrollContainer">
 					<!--  | filter:thingsFilter:things:filteredTags -->
 					<div data-ng-repeat="thing in filteredThings | orderBy:'name'" data-ng-include="'/utag/things/thing.html'"></div>

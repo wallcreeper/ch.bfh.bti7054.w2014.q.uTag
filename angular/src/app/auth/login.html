@@ -1,15 +1,17 @@
 <div id="loginDialog" data-ng-controller="AuthLoginCtrl">
+	<img src="assets/images/utag_logo.svg" alt="uTag" title="" id="login-logo" width="200" />
+	<h2 id="login-title">Login</h2>
 	<span>{{ message }}</span>
 	<form data-ng-submit="submit(credentials)">
-		<input data-ng-model="credentials.username" type="text" name="username" placeholder="Username" />
-		<input data-ng-model="credentials.password" type="password" name="password" placeholder="Password" />
-		<input type="submit" value="Login" />
+		<input data-ng-model="credentials.username" type="text" name="username" placeholder="Username" class="login-field" id="login-username" />
+		<input data-ng-model="credentials.password" type="password" name="password" placeholder="Password" class="login-field" id="login-pw" />
+		<input type="submit" value="Login" class="login-button" />
 	</form>
+	<p>Don't have an account yet? <a href="" data-ng-click="showRegisterDialog()">Register</a></p>
 </div>
-
-<ul>
+<!--ul>
 	<li>Access Token: {{ $storage.access_token }}</li>
 	<li>Access Type: {{ $storage.token_type }}</li>
 	<li>Expires in: {{ $storage.expires_in }}s</li>
 	<li>Expires: {{ $storage.expires }}</li>
-</ul>
+</ul-->

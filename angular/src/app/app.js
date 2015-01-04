@@ -86,8 +86,16 @@ angular
 			// 	}
 			// }
 		})
-		.otherwise({
-			redirectTo: '/'
+    .when('/things/create', {
+      templateUrl: '/utag/things/thing-create.html',
+      controller: 'ThingsCreateCtrl',
+      controllerAs: 'ctrl',
+      // resolve: {
+      //  thing: function($route, Things) {
+      //    return Things.repo.get({id: $route.current.params.id});
+      //  }
+      // }
+
 		});
 })
 .run(function(editableOptions) {

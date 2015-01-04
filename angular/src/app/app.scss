@@ -1,0 +1,17 @@
+@import "auth/auth";
+
+#user-menu{
+	position: absolute;
+	right: 0px;
+	background-color: #DDDDFF;
+	border-left: 1px #555555 solid;
+	border-bottom: 1px #555555 solid;
+	z-index: 10000;
+	height: 40px;
+	text-align: right;
+	padding: 5px;
+}
+
+#user-menu button{
+	height: 30px;
+}
