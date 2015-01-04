@@ -99,6 +99,7 @@ angular
 			dialog.closePromise.then(function (data) {
 				$scope.dialogShown = false;
 				$scope.$parent.fetchTags();
+				$scope.$parent.fetchThings();
 			});
 		}
 	}

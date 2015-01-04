@@ -137,6 +137,7 @@ angular
 					// headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8;'},
 				})
 				.success(function (data, status, headers, config) {
+					authSession.resetOAuth2Session(data);
 					authSession.setOAuth2Session(data);
 					authService.loginConfirmed(data, authInterceptor.request);
 
