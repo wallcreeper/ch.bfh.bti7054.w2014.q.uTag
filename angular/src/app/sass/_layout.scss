@@ -47,3 +47,21 @@ h2.sectionTitle {
 	padding: 5px;
 	height: 40px;
 }
+
+#createNewThingButton{
+	display: inline-block;
+	position: relative;
+	top: -5px;
+	left: 23px;
+	border-radius: 3px;
+	background: linear-gradient(to bottom, rgba(122,188,255,1) 0%,rgba(64,150,238,1) 100%);
+	border-color: #4668af;
+	color: #FFFFFF;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+	height: 30px;
+	padding: 0px 10px;
+	font-weight: 500;
+}
+
+
+
