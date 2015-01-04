@@ -80,7 +80,7 @@ angular
 		if (!$scope.dialogShown) {
 			var dialog = ngDialog.open({
 				templateUrl: '/utag/things/thing-edit-directive.html',
-				controller: 'ThingsDetailCtrl',
+				controller: 'ThingsUpdateCtrl',
 				className: 'ngdialog-theme-plain',
 				scope: $scope,
 			});
@@ -114,19 +114,67 @@ angular
 	$scope.showCreateDialog = showCreateDialog;
 
   $scope.saveThing = function saveThing(thing) {
-		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+		Things.repo.update({id: thing.id}, thing, function(data) {$location.path('/');}, function(data) {
       $scope.messages = data.data.errors;
       console.log("failAtUpdate");
     });
 	};
 
-	$scope.cancel = function cancel() {
-		$location.path('/');
-	};
+  //$scope.dialogShown = false;
+  $scope.showDeleteDialog = function showDeleteDialog(thing) {
+    Things.repo.delete({id: thing.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+      console.log("failAtDelete");
+    });
+  }
+
+  activate();
+
+	function activate() {
+		if ($routeParams.id) {
+			Things.repo.get({id: $routeParams.id}, function(data) {
+					$scope.thing = data;
+			});
+		}
+		if ($scope.tags.length === 0) {
+			$scope.tags = api.userTagsDistinct();
+		}
+	}
+
+})
+
+/**
+ * @ngdoc function
+ * @name utag.tags.controller:ThingsDetailCtrl
+ * @description
+ * # ThingsDetailCtrl
+ * Controller of the utag app
+ */
+.controller('ThingsUpdateCtrl', function ThingsUpdateCtrl ($scope, $log, $controller, $routeParams, $location, ngDialog, api, Tags, Things) {
+  'use strict';
+
+  // extend ThingsCtrl
+  $controller('ThingsBaseCtrl', { $scope: $scope });
+
+  $scope.title = 'ThingDetail';
+  $scope.thing = $scope.thing || {};
+  $scope.tags = $scope.tags || [];
+
+  $scope.searchTags = function searchTags(keywords) {
+    keywords = keywords ? keywords.split(' ') : [];
+    return api.searchTags(keywords);
+  }
+
+  $scope.saveThing = function saveThing(thing) {
+    Things.repo.update({id: $scope.thing.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+      console.log("failAtUpdate");
+    });
+  };
 
   //$scope.dialogShown = false;
   $scope.showDeleteDialog = function showDeleteDialog(thing) {
-    Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+    Things.repo.delete({id: $scope.thing.id}, thing, function(data) {$location.path('/');}, function(data) {
       $scope.messages = data.data.errors;
       console.log("failAtDelete");
     });
@@ -150,7 +198,7 @@ angular
     }*/
 
     $scope.yesDelete = function yesDelete(thing) {
-      Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      Things.repo.update({id: $scope.thing.id}, thing, function(data) {$location.path('/');}, function(data) {
         $scope.messages = data.data.errors;
         console.log("failAtyesDelete");
       });
@@ -164,16 +212,11 @@ angular
 
   activate();
 
-	function activate() {
-		if ($routeParams.id) {
-			Things.repo.get({id: $routeParams.id}, function(data) {
-					$scope.thing = data;
-			});
-		}
-		if ($scope.tags.length === 0) {
-			$scope.tags = api.userTagsDistinct();
-		}
-	}
+  function activate() {
+    if ($scope.tags.length === 0) {
+      $scope.tags = api.userTagsDistinct();
+    }
+  }
 
 })
 
@@ -195,7 +238,7 @@ angular
   }
 
   $scope.createThing = function createThing(thing) {
-    Things.repo.save({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+    Things.repo.save('', thing, function(data) {$location.path('/');}, function(data) {
       $scope.messages = data.data.errors;
     });
   };
