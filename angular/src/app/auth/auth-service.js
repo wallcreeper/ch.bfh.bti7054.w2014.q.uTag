@@ -14,7 +14,7 @@ angular
  * # authSession
  * Service in the utag app.
  */
-.factory('authSession', function authSession($rootScope, $sessionStorage, $log) {
+.factory('authSession', function authSession($rootScope, $localStorage, $sessionStorage, DSCacheFactory, $log) {
 	'use strict';
 
 	$rootScope.$storage = $sessionStorage;
@@ -24,21 +24,31 @@ angular
 	var provider = {
 
 		setOAuth2Session: function(data) {
+			isActive = true;
+
 			$rootScope.$storage.accessToken = data.access_token;
 			$rootScope.$storage.tokenType = data.token_type;
 			$rootScope.$storage.expiresIn = data.expires_in;
 			$rootScope.$storage.expires = new Date(new Date().getTime() + 1000 * data.expires_in);
-
-			isActive = true;
+			$rootScope.isLoggedIn = isActive;
 		},
 
 		resetOAuth2Session: function(data) {
+			isActive = false;
+
 			delete $rootScope.$storage.accessToken;
 			delete $rootScope.$storage.tokenType;
 			delete $rootScope.$storage.expiresIn;
 			delete $rootScope.$storage.expires;
+			$rootScope.$storage.$reset();
+			$rootScope.isLoggedIn = isActive;
 
-			isActive = false;
+			$localStorage.$reset();
+			$sessionStorage.$reset();
+			DSCacheFactory.get('colorCache').removeAll();
+			DSCacheFactory.get('selectedTagsCache').removeAll();
+			DSCacheFactory.get('tagsCache').removeAll();
+			DSCacheFactory.get('thingsCache').removeAll();
 		},
 
 		getIsActive: function() {

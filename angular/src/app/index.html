@@ -32,7 +32,7 @@
 	<meta name="msapplication-TileImage" content="assets/favicons/mstile-144x144.png">
 	<meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
 
-	
+
 	<!-- inject:css -->
 	<link rel="stylesheet" href="css/sass/draemmlib/main.css">
 	<link rel="stylesheet" href="css/sass/main.css">
@@ -51,11 +51,11 @@
 	<div class="wrapper">
 	  <div class="header">
 		<div id="user-menu">
-		   <button data-ng-show="!isAuthenticated()" id="user-login" data-ng-click="login()">Login</button>
-		   <button data-ng-show="isAuthenticated()" id="user-logout" data-ng-click="logout()">Logout</button>
+		   <button data-ng-show="!isLoggedIn" id="user-login" data-ng-click="login()">Login</button>
+		   <button data-ng-show="isLoggedIn" id="user-logout" data-ng-click="logout()">Logout</button>
 		</div>
 	  </div>
-	  <div class="content" data-ng-view=""></div>
+	  <div data-ng-show="isLoggedIn" class="content" data-ng-view=""></div>
 	  <div class="footer"></div>
 	</div>
 

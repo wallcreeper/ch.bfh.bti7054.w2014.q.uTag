@@ -26,7 +26,7 @@ angular
 		.when('/', {
 			templateUrl: '/utag/main/main.html',
 			controller: 'MainCtrl',
-			controllerAs: 'ctrl',
+			controllerAs: 'ac',
 			// resolve: {
 			// 	'tags': function (Tags) {
 			// 		return Tags.repo.query();

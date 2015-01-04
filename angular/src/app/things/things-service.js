@@ -17,7 +17,7 @@ angular
 .service('Things', function($resource, DSCacheFactory, API_PREFIX) {
 	'use strict';
 
-	var cache = new DSCacheFactory('ThingsCache', {
+	var cache = new DSCacheFactory('thingsCache', {
 
 		// This cache can hold 1000 items
 		capacity: 1000,
