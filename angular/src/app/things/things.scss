@@ -53,10 +53,6 @@
 		text-align: center;
 	}
 
-	.tagContainer{
-		display: inline-block;
-	}
-
 	.thing-options{
 		visibility: hidden;
 		position: absolute;
@@ -79,5 +75,28 @@
 		visibility: visible;
 		height: 31px;
 		top: -31px;
+	}
+}
+
+#things-toolbar{
+
+	.searchContainer{
+		margin: 0px 4px;
+		float: left;
+		max-width: 20%;
+	}
+
+	.poolFilterTags{
+		float: left;
+		max-width: 70%;
+		overflow-x: auto;
+		height: 30px;
+	}
+
+	#things-clearFilterButton{
+		float: left;
+		margin-top: 2px;
+		height: 24px;
+		max-width: 10%;
 	}
 }
