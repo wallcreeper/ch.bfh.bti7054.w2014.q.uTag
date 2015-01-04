@@ -29,6 +29,7 @@ angular
 
 	// functions
 	$scope.thingsFilter = thingsFilter;
+	$scope.fetchTags = fetchTags;
 
 	$scope.selectTag = function(tag) {
 		selectedTagsCache.push(tag);
