@@ -61,6 +61,7 @@ h2.sectionTitle {
 	height: 30px;
 	padding: 0px 10px;
 	font-weight: 500;
+	margin-bottom: -50px; /* otherwise it would push stuff down */
 }
 
 
