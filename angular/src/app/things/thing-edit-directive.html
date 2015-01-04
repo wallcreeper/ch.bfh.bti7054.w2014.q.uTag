@@ -10,6 +10,6 @@ Tags:
 <auto-complete source="searchTags($query)"></auto-complete>
 </tags-input>
 <hr />
+<span class="form-message" data-ng-repeat="message in messages"><br />{{message}}</span>
 <button data-ng-click="saveThing(thing)">Save Thing</button>
 <button data-ng-click="showDeleteDialog(thing)">Delete this Thing</button>
-<span data-ng-repeat="message in messages"><br />{{message}}</span>
