@@ -21,11 +21,15 @@ class ThingsController extends \BaseController {
    */
     public function store()
   {
-    $validator = Validator::make($data = Input::all(), Tag::$rules);
+    $validator = Validator::make($data = Input::all(), Thing::$rules);
 
     if ($validator->fails())
     {
-      return Redirect::back()->withErrors($validator)->withInput();
+      return Response::json([
+          'error' => 'validation',
+          'error_description' => 'Validation error',
+          'errors' => $validator->messages()->all(),
+         ], 400);
     }
 
     $thing = Thing::create($data);
@@ -81,6 +85,18 @@ class ThingsController extends \BaseController {
   */
   public function update($id)
   {
+    $validator = Validator::make($data = Input::all(), Thing::$rules);
+
+    if ($validator->fails())
+    {
+      return Response::json([
+          'error' => 'validation',
+          'error_description' => 'Validation error',
+          'errors' => $validator->messages()->all(),
+         ], 400);
+    }
+
+
     $user = User::find(Authorizer::getResourceOwnerId());
     $thing = $user->things()->findOrFail($id);
 
@@ -90,13 +106,6 @@ class ThingsController extends \BaseController {
 
     foreach ($tagsBeforeUpdate as $aTag) {
       array_push($tagIdsBeforeUpdate, $aTag->id);
-    }
-
-    $validator = Validator::make($data = Input::all(), Thing::$rules);
-
-    if ($validator->fails())
-    {
-      return Redirect::back()->withErrors($validator)->withInput();
     }
 
     // Update the thing-parameters
@@ -177,6 +186,12 @@ class ThingsController extends \BaseController {
   {
     $user = User::find(Authorizer::getResourceOwnerId());
     $thing = $user->things()->findOrFail($id);
+
+    if (!isset($thing)) {
+      return Response::json([
+        'errors' => 'Thing does not exist',
+      ], 200);
+    }
 
     $tagsBeforeDelete = $thing->tags()->get();
     $tagIdsBeforeDelete = array();

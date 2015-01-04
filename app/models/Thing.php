@@ -4,7 +4,9 @@ class Thing extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		// 'title' => 'required'
+		 'name' => 'required',
+		 'thingable.uri' => 'required|url',
+		 'tags' => 'required|array'
 	];
 
 	// Don't forget to fill this array

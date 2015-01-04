@@ -74,7 +74,10 @@ angular
   }
 
   $scope.saveThing = function saveThing(thing) {
-		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtUpdate")});
+		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+      console.log("failAtUpdate");
+    });
 	};
 
 	$scope.cancel = function cancel() {
@@ -82,8 +85,11 @@ angular
 	};
 
   //$scope.dialogShown = false;
-  $scope.showDeleteDialog = function showLoginDialog(thing) {
-    Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtDelete")});
+  $scope.showDeleteDialog = function showDeleteDialog(thing) {
+    Things.repo.delete({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+      console.log("failAtDelete");
+    });
 
    /* if (!$scope.dialogShown) {
       var dialog = ngDialog.open({
@@ -104,7 +110,10 @@ angular
     }*/
 
     $scope.yesDelete = function yesDelete(thing) {
-      Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("fail")});
+      Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+        $scope.messages = data.data.errors;
+        console.log("failAtyesDelete");
+      });
     }
 
     $scope.noDelete = function noDelete() {
@@ -146,8 +155,10 @@ angular
     return api.searchTags(keywords);
   }
 
-  $scope.saveThing = function saveThing(thing) {
-    Things.repo.save({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {console.log("failAtUpdate")});
+  $scope.createThing = function createThing(thing) {
+    Things.repo.save({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
+      $scope.messages = data.data.errors;
+    });
   };
 
   $scope.cancel = function cancel() {
