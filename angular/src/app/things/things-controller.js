@@ -26,7 +26,7 @@ angular
 	function showDetailsDialog(thing) {
 		if (!$scope.dialogShown) {
 			var dialog = ngDialog.open({
-				templateUrl: '/utag/things/thing-directive.html',
+				templateUrl: '/utag/things/thing-edit-directive.html',
 				controller: 'ThingsDetailCtrl',
 				className: 'ngdialog-theme-plain',
 				scope: $scope,
