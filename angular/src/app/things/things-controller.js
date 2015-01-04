@@ -11,7 +11,7 @@ angular
  * # ThingsBaseCtrl
  * Controller of the utag app
  */
-.controller('ThingsBaseCtrl', function ThingsBaseCtrl ($scope, $controller, $location) {
+.controller('ThingsBaseCtrl', function ThingsBaseCtrl ($scope, $controller, $location, ngDialog) {
 	'use strict';
 
 	$controller('TagsBaseCtrl', { $scope: $scope });
@@ -73,6 +73,46 @@ angular
   	return api.searchTags(keywords);
   }
 
+
+    $scope.dialogShown = false;
+
+	function showDetailsDialog(thing) {
+		if (!$scope.dialogShown) {
+			var dialog = ngDialog.open({
+				templateUrl: '/utag/things/thing-edit-directive.html',
+				controller: 'ThingsDetailCtrl',
+				className: 'ngdialog-theme-plain',
+				scope: $scope,
+			});
+			$scope.dialogShown = true;
+
+			dialog.closePromise.then(function (data) {
+				$scope.dialogShown = false;
+				// $log.info(data.id + ' has been dismissed.');
+			});
+		}
+	}
+
+	$scope.showDetailsDialog = showDetailsDialog;
+
+	function showCreateDialog() {
+		if (!$scope.dialogShown) {
+			var dialog = ngDialog.open({
+				templateUrl: '/utag/things/thing-create-directive.html',
+				controller: 'ThingsCreateCtrl',
+				className: 'ngdialog-theme-plain',
+				scope: $scope,
+			});
+			$scope.dialogShown = true;
+
+			dialog.closePromise.then(function (data) {
+				$scope.dialogShown = false;
+			});
+		}
+	}
+
+	$scope.showCreateDialog = showCreateDialog;
+
   $scope.saveThing = function saveThing(thing) {
 		Things.repo.update({id: $routeParams.id}, thing, function(data) {$location.path('/');}, function(data) {
       $scope.messages = data.data.errors;
@@ -119,7 +159,6 @@ angular
     $scope.noDelete = function noDelete() {
       $scope.dialogShown = false;
     }
-
 
   }
 

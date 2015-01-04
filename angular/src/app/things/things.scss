@@ -58,12 +58,13 @@
 		position: absolute;
 		top: 0px;
 		border: 1px rgb(50, 50, 50) solid;
-		border-bottom: none;
+		border-top: none;
+		border-left: none;
 		background: rgb(237,246,255);
 		height: 0px;
 		overflow: hidden;
 		padding: 5px;
-		left: 7px;
+		left: 0px;
 
 		transition: height, top;
 		transition-duration: 150ms;
@@ -73,8 +74,7 @@
 .thing:hover{
 	.thing-options{
 		visibility: visible;
-		height: 31px;
-		top: -31px;
+		height: 37px;
 	}
 }
 
@@ -88,15 +88,16 @@
 
 	.poolFilterTags{
 		float: left;
-		max-width: 70%;
-		overflow-x: auto;
+		max-width: 50%;
+		overflow: hidden;
 		height: 30px;
+		margin-left: 1%;
+		border: 1px #EEEEEE dashed;
 	}
 
 	#things-clearFilterButton{
 		float: left;
 		margin-top: 2px;
 		height: 24px;
-		max-width: 10%;
 	}
 }

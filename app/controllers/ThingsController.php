@@ -278,6 +278,3 @@ class ThingsController extends \BaseController {
 	}
 
 }
-
-
-}

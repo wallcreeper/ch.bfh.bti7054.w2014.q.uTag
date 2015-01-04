@@ -18,7 +18,8 @@
 	}
 }
 
-.tag {
+.tag,
+.tag-item{
 	border: 1px rgba(0, 0, 0, 0.4) solid;
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
 	border-radius: 30px 5px 5px 30px;
@@ -27,7 +28,7 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-	cursor: default;
+	cursor: pointer;
 
 	&:hover {
 		border-color: rgba(0, 0, 0, 0.8);
