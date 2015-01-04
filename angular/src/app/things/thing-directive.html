@@ -1,7 +1,8 @@
 <div class="thing-options">
-	<button data-ng-click="showThingDetailView(thing.id)">Edit</button>
+	<!--button data-ng-click="showThingDetailView(thing.id)">Edit</button-->
+	<button data-ng-click="showDetailsDialog(thing)">Edit</button>
 	|
-	<button data-ng-click="deleteThing(thing.id)">Delete</button>
+	<button data-ng-click="showDeleteDialog(thing)">Delete</button>
 </div>
 <h3>{{thing.name}}</h3>
 <!-- Here further thingable-types have to be implemented if there will be any further -->
