@@ -98,6 +98,7 @@ angular
 
 			dialog.closePromise.then(function (data) {
 				$scope.dialogShown = false;
+				$scope.$parent.fetchTags();
 			});
 		}
 	}
@@ -236,9 +237,13 @@ angular
 	}
 
 	$scope.createThing = function createThing(thing) {
-		Things.repo.save('', thing, function(data) {$location.path('/');}, function(data) {
+		Things.repo.save('', thing, function(data) {
+			$scope.closeThisDialog();
+			$location.path('/');
+		}, function(data) {
 			$scope.messages = data.data.errors;
 		});
+
 	};
 
 	$scope.cancel = function cancel() {

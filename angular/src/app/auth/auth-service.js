@@ -30,7 +30,7 @@ angular
 			$rootScope.$storage.tokenType = data.token_type;
 			$rootScope.$storage.expiresIn = data.expires_in;
 			$rootScope.$storage.expires = new Date(new Date().getTime() + 1000 * data.expires_in);
-			$rootScope.isLoggedIn = isActive;
+			$rootScope.$storage.isLoggedIn = isActive;
 		},
 
 		resetOAuth2Session: function(data) {
@@ -41,7 +41,7 @@ angular
 			delete $rootScope.$storage.expiresIn;
 			delete $rootScope.$storage.expires;
 			$rootScope.$storage.$reset();
-			$rootScope.isLoggedIn = isActive;
+			$rootScope.$storage.isLoggedIn = isActive;
 
 			$localStorage.$reset();
 			$sessionStorage.$reset();
@@ -53,6 +53,10 @@ angular
 
 		getIsActive: function() {
 			return isActive;
+		},
+
+		getIsLoggedIn: function() {
+			return $rootScope.$storage.isLoggedIn;
 		},
 
 		getAccessToken: function() {

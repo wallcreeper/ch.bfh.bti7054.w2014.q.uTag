@@ -51,11 +51,11 @@
 	<div class="wrapper">
 	  <div class="header">
 		<div id="user-menu">
-		   <button data-ng-show="!isLoggedIn" id="user-login" data-ng-click="login()">Login</button>
-		   <button data-ng-show="isLoggedIn" id="user-logout" data-ng-click="logout()">Logout</button>
+		   <button data-ng-show="!$storage.isLoggedIn" id="user-login" data-ng-click="login()">Login</button>
+		   <button data-ng-show="$storage.isLoggedIn" id="user-logout" data-ng-click="logout()">Logout</button>
 		</div>
 	  </div>
-	  <div data-ng-show="isLoggedIn" class="content" data-ng-view=""></div>
+	  <div data-ng-show="$storage.isLoggedIn" class="content" data-ng-view=""></div>
 	  <div class="footer"></div>
 	</div>
 
@@ -83,14 +83,14 @@
 	<script src="utils/transformer.js"></script>
 	<script src="utils/color-hash.js"></script>
 	<script src="utils/api.js"></script>
-	<script src="tags/tags.js"></script>
-	<script src="tags/tags-service.js"></script>
-	<script src="tags/tags-directive.js"></script>
-	<script src="tags/tags-controller.js"></script>
 	<script src="things/things.js"></script>
 	<script src="things/things-service.js"></script>
 	<script src="things/things-directive.js"></script>
 	<script src="things/things-controller.js"></script>
+	<script src="tags/tags.js"></script>
+	<script src="tags/tags-service.js"></script>
+	<script src="tags/tags-directive.js"></script>
+	<script src="tags/tags-controller.js"></script>
 	<script src="main/main.js"></script>
 	<script src="main/main-service.js"></script>
 	<script src="main/main-controller.js"></script>

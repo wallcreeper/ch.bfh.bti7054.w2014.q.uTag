@@ -138,6 +138,7 @@ angular
 		$scope.error = false;
 		authSrvc.register(user, function(data) {
 			$scope.closeThisDialog();
+			ngDialog.close('login');
 			// $log.info($scope);
 			// $log.info(data);
 		}, function(data) {
