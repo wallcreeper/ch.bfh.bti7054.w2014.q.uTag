@@ -11,14 +11,17 @@ class ThingsController extends \BaseController {
   {
     $things = User::find(Authorizer::getResourceOwnerId())->things()->with('tags', 'thingable')->get();
 
-
-    // return View::make('things.index', compact('things'));
-    // return Response::json(array(
-    //  'error' => false,
-    //  'things' => $things->toArray()),
-    //  200
-    // );
     return Response::json($things->toArray(), 200);
+  }
+
+  /**
+   * Show the form for creating a new thing
+   *
+   * @return Response
+   */
+  public function create($thing)
+  {
+    return View::make('tags.create');
   }
 
   /**
@@ -31,7 +34,6 @@ class ThingsController extends \BaseController {
   {
     $thing = User::find(Authorizer::getResourceOwnerId())->things()->with('tags', 'thingable')->findOrFail($id);
 
-    // return View::make('things.show', compact('thing'));
     return Response::json($thing, 200);
   }
 
@@ -43,8 +45,9 @@ class ThingsController extends \BaseController {
   */
   public function update($id)
   {
-    $thing = User::find(Authorizer::getResourceOwnerId())->things()->findOrFail($id);
     $user = User::find(Authorizer::getResourceOwnerId());
+    $thing = $user->things()->findOrFail($id);
+
 
     $tagsBeforeUpdate = $thing->tags()->get();
     $tagIdsBeforeUpdate = array();
@@ -52,9 +55,6 @@ class ThingsController extends \BaseController {
     foreach ($tagsBeforeUpdate as $aTag) {
       array_push($tagIdsBeforeUpdate, $aTag->id);
     }
-
-    //return var_dump($tagIdsBeforeUpdate);
-
 
     $validator = Validator::make($data = Input::all(), Thing::$rules);
 
@@ -66,35 +66,7 @@ class ThingsController extends \BaseController {
     // Update the thing-parameters
     $thing->update($data);
 
-    /**
-    * Get tag-ids for DB-Insert
-    * Generate new tag if there is no id
-    *
-    * @param object $n
-    * @return array(int ids)
-    */
-    /*function getTagsIdAndCreateNew($n)
-    {
-      global $thing;
-
-      if (isset($n['id'])) {
-        return($n['id']);
-      } else {
-        $tag = Tag::create([
-          'name' => $n['name'],
-          'counter' => '0'
-        ]);
-        $user = User::find(Authorizer::getResourceOwnerId());
-        $user->tags()->save($tag);
-        $thing->tags()->attach($tag);
-        return $tag->id;
-      }
-    }*/
-
     $tags = array();
-
-    //$tagIdsBeforeUpdate = $thing->tags()->get();
-
     foreach ($data['tags'] as $dataTag) {
       if (isset($dataTag['id'])) {
         array_push($tags, $dataTag['id']);
@@ -104,24 +76,15 @@ class ThingsController extends \BaseController {
           'counter' => '0'
         ]);
         $user->tags()->save($tag);
-        //$thing->tags()->attach($tag);
+        //$thing->tags()->attach($tag); -> Don't do this here this will be done later
         array_push($tags, $tag->id);
       }
     }
 
-    // update the tags
-    // array_map calls getTagsIdAndCreateNew($data['tags']) and returns an array of just the ids of the tags
-    //$tags = array_map("getTagsIdAndCreateNew", $data['tags']);
 
-
-   // return var_dump($tagIdsBeforeUpdate);
-
-    // update the counter of the tags
-
+    // generate array of thats which were in Thing before update and now not anymore
     $tagIdsWhichAreRemoved = array();
-
     $tagIdsWhichAreRemoved = array_diff($tagIdsBeforeUpdate, $tags);
-    //return $tagIdsWhichAreRemoved;
 
     // compare which tags have been added and which continue existing
     foreach ($tags as $newTagId) {
@@ -143,14 +106,9 @@ class ThingsController extends \BaseController {
         $thing->tags()->attach($tag);
         $tag->save();
       } 
-   /*   } elseif (isset($tagToRemoveId)) {
-        return "we remove this: ".$tagToRemoveId;
-        //put tag-id to array
-          array_push($tagIdsWhichAreRemoved, $tagToRemoveId);
-      }*/
     }
 
-    $thing->tags()->sync($tags); //-------------------------------------------------------------- remove -> that will be done ganz unten
+    $thing->tags()->sync($tags); // must happen before tag counter is decreased?
 
     // check for tags to delete
     foreach ($tagIdsWhichAreRemoved as $oldTag) {
@@ -159,35 +117,14 @@ class ThingsController extends \BaseController {
         //return $oldTag;
         if ($tag->counter == 1) { // this was the last link to this tag -> destroy the tag
           $tag->delete();
-          //return "should be destroyed now";
         } else { // other links exist to this tag -> just decrease the counter
           $oldTagCounter = $tag->counter;
           $tag->counter = ($tag->counter - 1);
           $newTagCounter = $tag->counter;
           $tag->save();
-          //return "old: ".$oldTagCounter." -new: ".$newTagCounter; 
         }
      }
     
-
-    // decrease counter or delete tag if counter = 0
-    /*foreach ($tagIdsWhichAreRemoved as $removeTagId) {
-      $tag = $thing->tags()->find($removeTagId);
-      if ($tag->counter == 1) { // this was the last link to this tag -> destroy the tag
-        $tag->destroy();
-        return "should be destroyed now";
-      } else { // other links exist to this tag -> just decrease the counter
-
-        $oldTagCounter = $tag->counter;
-        $tag->counter = ($tag->counter - 1);
-        $newTagCounter = $tag->counter;
-        $tag->save();
-        return "old: ".$oldTagCounter." -new: ".$newTagCounter; 
-      }
-    }*/
-
-   // $thing->tags()->sync($tags);
-
     // update the thingable-parameters
     $thingable = $thing->thingable;
     $thingable->uri = $data['thingable']['uri'];
@@ -196,7 +133,45 @@ class ThingsController extends \BaseController {
     return Response::json("Saved", 200);
   }
 
+  /**
+   * Remove the specified thing from storage.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function destroy($id)
+  {
+    $user = User::find(Authorizer::getResourceOwnerId());
+    $thing = $user->things()->findOrFail($id);
 
+    $tagsBeforeDelete = $thing->tags()->get();
+    $tagIdsBeforeDelete = array();
+
+    foreach ($tagsBeforeDelete as $aTag) {
+      array_push($tagIdsBeforeDelete, $aTag->id);
+    }
+
+    foreach ($tagIdsBeforeDelete as $oldTag) {
+
+        $tag = Tag::find($oldTag);
+        if ($tag->counter == 1) { // this was the last link to this tag -> destroy the tag
+          $tag->delete();
+        } else { // other links exist to this tag -> just decrease the counter
+          $oldTagCounter = $tag->counter;
+          $tag->counter = ($tag->counter - 1);
+          $newTagCounter = $tag->counter;
+          $tag->save();
+        }
+     }
+    
+    // delete the thingable
+    $thingable = $thing->thingable;
+    $thingable->delete();
+   
+    $thing->delete();
+
+    return Response::json("Deleted", 200);
+  }
 
 
   /**
