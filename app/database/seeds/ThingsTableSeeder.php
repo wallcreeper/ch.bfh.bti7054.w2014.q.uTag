@@ -58,7 +58,8 @@ class ThingsTableSeeder extends Seeder {
 				// increase counter of tags
 				foreach ($tagsAr as $tagId) {
 					$tagToIncrease = Tag::find($tagId);
-					$tagToIncrease->counter = $tagToIncrease->counter + 1;
+					$oldCounter = $tagToIncrease->counter;
+					$tagToIncrease->counter = $oldCounter + 1;
 					$tagToIncrease->save();
 				}
 
