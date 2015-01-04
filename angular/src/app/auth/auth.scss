@@ -11,3 +11,30 @@
 	font-size: 2em;
 	margin: 0 0 15px 0;
 }
+
+p{
+	font-size: 17px;
+	margin-top: 15px;
+}
+
+#registerDialog{
+
+	text-align: center;
+
+	input{
+		display: block;
+		margin: 8px 0px;
+		width: 200px;
+	}
+
+	input[type="submit"]{
+		width: 100px;
+		margin-left: 100px;
+	}
+	
+	h2{
+		font-weight: 200;
+		font-size: 30px;
+		margin-bottom: 15px;
+	}
+}

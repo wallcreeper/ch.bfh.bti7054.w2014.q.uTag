@@ -5,8 +5,9 @@
 	<form data-ng-submit="submit(credentials)">
 		<input data-ng-model="credentials.username" type="text" name="username" placeholder="Username" class="login-field" id="login-username" />
 		<input data-ng-model="credentials.password" type="password" name="password" placeholder="Password" class="login-field" id="login-pw" />
+		<input type="submit" value="Login" class="login-button" />
 	</form>
-	<button data-ng-click="logout">fuck</button>
+	<p>Don't have an account yet? <a href="" data-ng-click="showRegisterDialog()">Register</a></p>
 </div>
 <!--ul>
 	<li>Access Token: {{ $storage.access_token }}</li>
