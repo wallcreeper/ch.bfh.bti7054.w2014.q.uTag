@@ -19,7 +19,7 @@
 }
 
 .tag,
-.tag-item{
+tags-input .tags .tag-item {
 	border: 1px rgba(0, 0, 0, 0.4) solid;
 	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
 	border-radius: 30px 5px 5px 30px;
@@ -46,6 +46,12 @@
 		margin: 0 4px 0 -12px;
 		background-clip: content-box;
 	}
+}
+
+tags-input .tags .tag-item {
+	height: 25px;
+	line-height: 0px;
+	margin: 2px 2px 1px;
 }
 
 .tagContainer{
